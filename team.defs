@@ -1,0 +1,17 @@
+#Tue Mar 22 08:48:47 CET 2022
+bluej.teamsettings.ignore1=.*\\.class
+bluej.teamsettings.yourName=CodingQuantum
+bluej.teamsettings.git.server=github.com
+bluej.teamsettings.yourEmail=thetech@gmx.net
+bluej.teamsettings.git.repositoryPrefix=/CodingQuantum/TowerDefense
+bluej.teamsettings.vcs=git
+bluej.teamsettings.user=thetech@gmx.net
+bluej.teamsettings.ignore3=team\\.defs
+bluej.teamsettings.ignore2=bluej\\.pkh
+bluej.teamsettings.ignore5=.*\\~
+bluej.teamsettings.git.branch=
+bluej.teamsettings.ignore4=.*\\.ctxt
+bluej.teamsettings.ignore7=.*\\\#backup
+bluej.teamsettings.ignore6=.*\\\#
+bluej.teamsettings.git.protocol=https
+bluej.teamsettings.ignore8=\\.DS_Store
