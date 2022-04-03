@@ -42,6 +42,6 @@ public class FENSTER
     {
         System.setProperty("sun.java2d.uiScale", "1.0");
         new FENSTER();
-        BILD b = new BILD(50, 50, "paul.png", 1);
+        BILD b = new BILD(50, 50, "test.png", 1);
     }
 }
