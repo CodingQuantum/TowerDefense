@@ -1,6 +1,6 @@
 class UNTERSTUETZUNGSTURM extends TURM
 {
-    //Attribut unterstÃ¼tzung[] funktion abklÃ¤ren?
+    //Attribut unterstützung[] funktion abklären?
     UNTERSTUETZUNGSTURM()
     {
         super();

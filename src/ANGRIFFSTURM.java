@@ -11,7 +11,7 @@ class ANGRIFFSTURM extends TURM
         //Geschossdaten
     }
     
-    void angreifen(/*ZIEL*/) //Zielformat abkl√§ren
+    void angreifen(/*ZIEL*/) //Zielformat abkl‰ren
     {
         
     }

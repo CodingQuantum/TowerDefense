@@ -1,10 +1,10 @@
 class TURM
 {
-    int position; //abkl√§ren
+    int position; //abkl‰ren
     BILD bild[];
     int reichweite;
     INFO info;
-    int level;  //ins Klassendiagramm erg√§nzen
+    int level;  //ins Klassendiagramm erg‰nzen
     
     TURM()
     {

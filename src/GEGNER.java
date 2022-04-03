@@ -11,7 +11,7 @@ public class GEGNER
     {
         leben = 100;
         geschwindigkeit = 10;
-        // bild und Lebensanzeige einfÃ¼gen
+        // bild und Lebensanzeige einfügen
         rotation = 1;
         position = 1;
     }
@@ -32,11 +32,11 @@ public class GEGNER
     
     void sterben()
     {
-        
+       //den jewiligenGegner = null setzen
     }
     
     void lebensanzeigeSetzen(int leben)
     {
-        
+       LEBENSANZEIGE.anzeigeSetzen(leben); 
     }
 }

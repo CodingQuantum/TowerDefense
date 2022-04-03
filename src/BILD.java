@@ -1,17 +1,24 @@
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import java.awt.*;
 
 public class BILD
 {
-    ImageIcon texture;
+    ImageIcon textur; //Textur des Bildes
+    JLabel label; //Label zur Darstellung der Textur
     
-    BILD(int posx, int posy, int sizex, int sizey, String pfad, int ebene)
+    //erzeugt das Bild
+    BILD(int posx, int posy, String pfad, int ebene)
     {
-        texture = new ImageIcon(getClass().getResource(pfad));
-        JLabel label = new JLabel(texture);
+        textur = new ImageIcon(getClass().getResource(pfad));
+        label = new JLabel(textur);
         FENSTER.paneGeben().add(label, new Integer(ebene));
-        label.setSize(sizex, sizey);
+        label.setSize(textur.getIconWidth(), textur.getIconHeight());
         label.setLocation(posx, posy);
+    }
+    
+    //setzt die Position des Bildes (obere linke Ecke)
+    public void positionSetzen(int posx, int posy)
+    {
+    	label.setLocation(posx, posy);
     }
 }
