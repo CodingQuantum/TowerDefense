@@ -2,10 +2,10 @@ public class GEGNER
 {
     int leben;
     int geschwindigkeit;
-    //LEBENSANZEIGE lebensanzeige;
-    //BILD bild;
-    int rotation; //abzusprechen mit Grafik 
-    int position; //Absprache mit Gruppe
+    LEBENSANZEIGE lebensanzeige;
+    BILD bild;
+    int rotation; //Datentyp abzusprechen mit Grafik 
+    VEKTOR position; 
     
     GEGNER()
     {
@@ -32,7 +32,7 @@ public class GEGNER
     
     void sterben()
     {
-       //den jewiligenGegner = null setzen
+       //den jeweiligen Gegner = null setzen
     }
     
     void lebensanzeigeSetzen(int leben)
