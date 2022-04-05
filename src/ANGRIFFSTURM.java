@@ -15,4 +15,8 @@ class ANGRIFFSTURM extends TURM
     {
         
     }
+    void test()
+    {
+    	
+    }
 }
