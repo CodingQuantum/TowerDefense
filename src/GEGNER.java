@@ -39,4 +39,6 @@ public class GEGNER
     {
        LEBENSANZEIGE.anzeigeSetzen(leben); 
     }
+    
+   
 }
