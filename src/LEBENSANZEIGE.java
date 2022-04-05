@@ -16,7 +16,7 @@ public class LEBENSANZEIGE
 		
 	}
 	
-	void AnzeigeSetzen()
+	void anzeigeSetzen(int leben)
 	{
 		
 	}
