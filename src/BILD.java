@@ -1,24 +1,77 @@
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import java.awt.*;
+import javax.swing.*;
 
-public class BILD
+//Klasse für die Darstellung von Bilddateien
+class BILD
 {
-    ImageIcon textur; //Textur des Bildes
-    JLabel label; //Label zur Darstellung der Textur
+	VEKTOR position;
+	VEKTOR groesse;
+    double rotation;
+    
+	LABEL label;
     
     //erzeugt das Bild
-    BILD(int posx, int posy, String pfad, int ebene)
+    BILD(String pfad, VEKTOR position, double rotation, int ebene)
     {
-        textur = new ImageIcon(getClass().getResource(pfad));
-        label = new JLabel(textur);
+        ImageIcon textur = new ImageIcon(getClass().getResource(pfad));
+        groesse = new VEKTOR(textur.getIconWidth(), textur.getIconHeight());
+        label = new LABEL(textur);
+        this.position = position;
+        double diagonale = Math.sqrt(groesse.x * groesse.x + groesse.y * groesse.y);
+        label.setSize((int) diagonale + 1, (int) diagonale + 1);
+        positionSetzen(position);
+        rotationSetzen(rotation);
         FENSTER.paneGeben().add(label, new Integer(ebene));
-        label.setSize(textur.getIconWidth(), textur.getIconHeight());
-        label.setLocation(posx, posy);
     }
     
-    //setzt die Position des Bildes (obere linke Ecke)
-    public void positionSetzen(int posx, int posy)
+    //eigenes Label für Rotation
+    class LABEL extends JLabel
     {
-    	label.setLocation(posx, posy);
+		public LABEL(ImageIcon texture)
+    	{
+    		super(texture);
+    	}
+    	
+    	@Override
+        public void paintComponent(Graphics g)
+    	{
+           Graphics2D gx = (Graphics2D) g;
+           gx.rotate(rotation, getWidth() / 2, getHeight() / 2);
+           super.paintComponent(g);
+        }
+    }
+    
+    //setzt die Position des Mittelpunktes
+    void positionSetzen(VEKTOR position)
+    {
+    	this.position = position;
+        label.setLocation(position.x - label.getWidth() / 2, position.y - label.getHeight() / 2);
+    }
+    
+    //setzt die Rotation
+    void rotationSetzen(double rotation)
+    {
+    	while (rotation >= 2 * Math.PI)
+    	{
+    		rotation -= 2 * Math.PI;
+    	}
+    	while (rotation < 0)
+    	{
+    		rotation += 2 * Math.PI;
+    	}
+    	this.rotation = rotation;
+    	label.repaint();
+    }
+    
+    //setzt die Sichtbarkeit
+    void sichtbarkeitSetzen(boolean sichtbar)
+    {
+    	label.setVisible(sichtbar);
+    }
+    
+    //entfernt das Bild von der Darstellungsflaeche
+    void entfernen()
+    {
+    	FENSTER.labelEntfernen(label);
     }
 }
