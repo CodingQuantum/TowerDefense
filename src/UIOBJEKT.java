@@ -1,8 +1,6 @@
-import java.awt.event.*;
-
-//Interface für Kommunikation zwischen Knoepfen etc. und Empfaenger
+//Interface fuer Kommunikation zwischen Knoepfen etc. und Empfaenger
 interface UIOBJEKT
 {
-	void tasterGedrueckt(VEKTOR mausposition);
-	void schalterGedrueckt(VEKTOR mausposition, boolean zustand);
+	void tasterGedrueckt(String id);
+	void schalterGedrueckt(String id, boolean zustand);
 }

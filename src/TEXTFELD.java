@@ -3,7 +3,7 @@ import java.awt.font.*;
 import java.awt.geom.*;
 import javax.swing.*;
 
-//Klasse für das Anzeigen von Text
+//Klasse fuer das Anzeigen von Text
 class TEXTFELD
 {
 	String schriftart = "Impact"; //Variable, um die Standardschriftart einfach ändern zu können

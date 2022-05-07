@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 
-//Klasse für die Darstellung von Bilddateien
+//Klasse fuer die Darstellung von Bilddateien
 class BILD
 {
 	VEKTOR position;

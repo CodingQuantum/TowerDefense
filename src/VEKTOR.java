@@ -1,4 +1,4 @@
-//Klasse für die Verwaltung eines zweidimensionalen Vektors
+//Klasse fuer die Verwaltung eines zweidimensionalen Vektors
 class VEKTOR
 {
 	int x;

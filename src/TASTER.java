@@ -1,7 +1,7 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-//Klasse für einen Knopf, der wieder in seinen Ausgangszustand zurückgeht, wenn er losgelassen wird
+//Klasse fuer einen Knopf, der wieder in seinen Ausgangszustand zurückgeht, wenn er losgelassen wird
 class TASTER implements MouseListener
 {
 	VEKTOR position;
@@ -9,10 +9,11 @@ class TASTER implements MouseListener
 	
 	JLabel label;
 	UIOBJEKT empfaenger;
+	String id;
 	
 	//erzeugt den Taster, das erste Bild bestimmt die Groesse
-	//pfad 1: Bild für nicht gedrückten Zustand, pfad2: Bild für gedrückten Zustand, pfad3: Bild für 
-	TASTER(String pfad1, String pfad2, String pfad3, VEKTOR position, UIOBJEKT empfaenger, int ebene)
+	//pfad 1: Bild fuer nicht gedrückten Zustand, pfad2: Bild fuer gedrückten Zustand, pfad3: Bild fuer Ueberfahren mit Mauszeiger 
+	TASTER(String pfad1, String pfad2, String pfad3, VEKTOR position, UIOBJEKT empfaenger, String id, int ebene)
 	{
 		grafiken = new BILD [] {new BILD(pfad1, position, 0, ebene), new BILD(pfad2, position, 0, ebene), new BILD(pfad3, position, 0, ebene + 1)};
 		grafiken[1].sichtbarkeitSetzen(false);
@@ -22,6 +23,7 @@ class TASTER implements MouseListener
 		label.addMouseListener(this);
 		positionSetzen(position);
 		this.empfaenger = empfaenger;
+		this.id = id;
 		FENSTER.paneGeben().add(label);
 	}
 	
@@ -43,33 +45,38 @@ class TASTER implements MouseListener
 		grafiken[1].entfernen();
 		grafiken[2].entfernen();
 	}
-
+	
+	//sendet beim Druecken ein Signal an Empfaenger
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		empfaenger.tasterGedrueckt(new VEKTOR(e.getLocationOnScreen().x, e.getLocationOnScreen().y));
+		empfaenger.tasterGedrueckt(id);
 	}
-
+	
+	//zeigt das Bild 2 beim Druecken
 	@Override
 	public void mousePressed(MouseEvent e)
 	{
 		grafiken[0].sichtbarkeitSetzen(false);
 		grafiken[1].sichtbarkeitSetzen(true);
 	}
-
+	
+	//zeigt wieder Bild 1 beim Loslassen
 	@Override
 	public void mouseReleased(MouseEvent e)
 	{
 		grafiken[0].sichtbarkeitSetzen(true);
 		grafiken[1].sichtbarkeitSetzen(false);
 	}
-
+	
+	//zeigt das Bild 3 beim Ueberfahren mit dem Mauszeiger
 	@Override
 	public void mouseEntered(MouseEvent e)
 	{
 		grafiken[2].sichtbarkeitSetzen(true);
 	}
-
+	
+	//laesst Bild 3 beim Verlassen mit dem Mauszeiger wieder verschwinden
 	@Override
 	public void mouseExited(MouseEvent e)
 	{
