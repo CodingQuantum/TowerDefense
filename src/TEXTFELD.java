@@ -23,7 +23,7 @@ class TEXTFELD
 		Font schrif = new Font(schriftart, Font.PLAIN, schriftgroesse);
 		label.setFont(schrif);
 		FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
-		label.setSize((int) schrif.getStringBounds(text, frc).getWidth() + 1, (int) schrif.getStringBounds(text, frc).getHeight() + 1);
+		label.setSize((int) schrif.getStringBounds(text, frc).getWidth() + 2, (int) schrif.getStringBounds(text, frc).getHeight() + 2);
 		label.setForeground(new Color(0, 0, 0));
 		positionSetzen(position);
 		FENSTER.paneGeben().add(label, new Integer(ebene));

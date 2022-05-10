@@ -45,6 +45,6 @@ class FENSTER
 	{
 		System.setProperty("sun.java2d.uiScale", "1.0");
 		new FENSTER();
-		new MENUE();
+		new OBERFLAECHE();//new MENUE();
 	}
 }
