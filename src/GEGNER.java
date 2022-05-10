@@ -4,17 +4,19 @@ public class GEGNER
     int geschwindigkeit;
     LEBENSANZEIGE lebensanzeige;
     BILD bild;
-    int rotation; //Datentyp abzusprechen mit Grafik 
+    double rotation;
     VEKTOR position; 
     VERWALTUNG referenz;
     int gegnerNummer;
     
     GEGNER( VERWALTUNG verwaltung, int nummer)
     {
+    	position = new VEKTOR(0, 0);
         leben = 100;
         geschwindigkeit = 1;
         referenz = verwaltung;
-        // bild und Lebensanzeige einfügen
+        bild = new BILD("../Grafik/Tank2", position, rotation, 1);
+        //Lebensanzeige einfügen
         rotation = 1;
         gegnerNummer = nummer;
     }
@@ -36,7 +38,7 @@ public class GEGNER
     
     void lebensanzeigeSetzen(int leben)
     {
-       LEBENSANZEIGE.anzeigeSetzen(leben); 
+       //LEBENSANZEIGE.anzeigeSetzen(leben); 
     }
     
    

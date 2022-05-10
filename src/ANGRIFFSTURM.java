@@ -7,7 +7,8 @@ class ANGRIFFSTURM extends TURM
     
     ANGRIFFSTURM()
     {
-        //initialisieren von rate, geschwindigkeit, schaden
+    	position = new VEKTOR(0,0);
+        bild = new BILD("../Grafiken/Turm1", position, rate, geschwindigkeit)//initialisieren von rate, geschwindigkeit, schaden
         //Geschossdaten
     }
     
