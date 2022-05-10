@@ -47,7 +47,7 @@ public class VERWALTUNG {
 	{
 		int anzahlGegner = welle * 2;
 		for(; anzahlGegner > 0; --anzahlGegner)
-			gegner.add(new GEGNER());
+			gegner.add(new GEGNER(this, gegner.size()));
 	}
 	
 	void bauen()
