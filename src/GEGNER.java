@@ -6,13 +6,17 @@ public class GEGNER
     BILD bild;
     int rotation; //Datentyp abzusprechen mit Grafik 
     VEKTOR position; 
+    VERWALTUNG referenz;
+    int gegnerNummer;
     
-    GEGNER()
+    GEGNER( VERWALTUNG verwaltung, int nummer)
     {
         leben = 100;
-        geschwindigkeit = 10;
+        geschwindigkeit = 1;
+        referenz = verwaltung;
         // bild und Lebensanzeige einfügen
         rotation = 1;
+        gegnerNummer = nummer;
     }
     
     void bewegen()
@@ -25,14 +29,10 @@ public class GEGNER
         leben = leben - schaden;
         if ( leben <= 0)
         {
-            sterben();
+           referenz.gegner.remove(gegnerNummer);
         }
     }
     
-    void sterben()
-    {
-       //den jeweiligen Gegner = null setzen
-    }
     
     void lebensanzeigeSetzen(int leben)
     {
