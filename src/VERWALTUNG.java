@@ -1,18 +1,32 @@
+import java.util.Timer;
+import java.util.Vector;
+
+
 public class VERWALTUNG {
-	//timer hinzufügen
+	Timer timer;
 	KARTE karte;
 	DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
-	ANGRIFFSTURM angriffstuerme;
-	UNTERSTUETZUNGSTURM unterstuetzungstuerme;
-	GEGNER gegner;
-	GESCHOSS geschosse;
+	Vector <ANGRIFFSTURM> angriffstuerme;
+	Vector <UNTERSTUETZUNGSTURM> unterstuetzungstuerme;
+	Vector <GEGNER> gegner;
 	int geld;
 	int leben;
 	int welle;
 	
 	VERWALTUNG()
 	{
+		timer = new Timer();
+		karte = new KARTE();
+		oberflaeche = new OBERFLAECHE();
+        angriffstuerme = new Vector();
+        unterstuetzungstuerme = new Vector();
+        gegner = new Vector();
+        geld = 0;
+        leben = 100;
+        welle = 0;
+
+
 		
 	}
 	
@@ -26,18 +40,20 @@ public class VERWALTUNG {
 		
 	}
 	
-	//Methode geschosse Funktion abklären
 	
 	//Methode prozess Funktion abklären
 	
-	void welle()
+	void welle(int welle)
 	{
-		
+		int anzahlGegner = welle * 2;
+		for(; anzahlGegner > 0; --anzahlGegner)
+			gegner.add(new GEGNER(this, gegner.size()));
 	}
 	
 	void bauen()
 	{
-		
+        angriffstuerme.add(new ANGRIFFSTURM());
+
 	}
 	
 	void ende()
