@@ -14,13 +14,13 @@ class KARTENAUSWAHL implements UIOBJEKT
 	//erzeugt das Auswahlmenue
 	KARTENAUSWAHL()
 	{
-		hintergrund = new BILD("grafiken/kartenauswahl/kartenauswahl.png", new VEKTOR(960, 540), 0, 0);
+		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(960, 540), 0, 0);
 		karten = new TASTER[anzahlKarten];
 		for (int i = 0; i < karten.length; ++i)
 		{
 			karten[i] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * i, 880), this, "karte" + i, 1);
 		}
-		zurueck = new TASTER("grafiken/zurueck1.png", "grafiken/zurueck2.png", "grafiken/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 1);
+		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 1);
 		aktiv = false;
 		position = new VEKTOR(-960, 540);
 		x = Math.PI / 2;

@@ -17,14 +17,10 @@ class TEXTFELD
 	//erzeugt das Textfeld
 	TEXTFELD(String text, VEKTOR position, int schriftgroesse, int ebene)
 	{
-		label = new JLabel(text);
-		this.text = text;
-		this.schriftgroesse = schriftgroesse;
-		Font schrif = new Font(schriftart, Font.PLAIN, schriftgroesse);
-		label.setFont(schrif);
-		FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
-		label.setSize((int) schrif.getStringBounds(text, frc).getWidth() + 2, (int) schrif.getStringBounds(text, frc).getHeight() + 2);
+		label = new JLabel();
 		label.setForeground(new Color(0, 0, 0));
+		this.schriftgroesse = schriftgroesse;
+		textSetzen(text);
 		positionSetzen(position);
 		FENSTER.paneGeben().add(label, new Integer(ebene));
 	}
@@ -40,10 +36,16 @@ class TEXTFELD
 	void textSetzen(String text)
 	{
 		this.text = text;
-		Font schrif = new Font(schriftart, Font.PLAIN, schriftgroesse);
-		label.setFont(schrif);
+		label.setText(text);
+		Font schrift = new Font(schriftart, Font.PLAIN, schriftgroesse);
+		label.setFont(schrift);
 		FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
-		label.setSize((int) schrif.getStringBounds(text, frc).getWidth() + 1, (int) schrif.getStringBounds(text, frc).getHeight() + 1);
+		label.setSize((int) schrift.getStringBounds(text, frc).getWidth() + 1, (int) schrift.getStringBounds(text, frc).getHeight() + 1);
+	}
+	
+	void textSetzen(int zahl)
+	{
+		textSetzen(String.valueOf(zahl));
 	}
 	
 	//entfernt das Textfeld von der Darstellungsflaeche

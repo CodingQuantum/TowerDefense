@@ -1,43 +1,10 @@
-
-public class TURMVORSCHAU 
+class TURMVORSCHAU extends TASTER
 {
-	BILD bild;
-	TASTER taster;
-	OBERFLAECHE oberflaeche;
+	int turmId;
 	
-	TURMVORSCHAU()
+	TURMVORSCHAU(int turmId, UIOBJEKT empfaenger, String id, int ebene)
 	{
-		
-	}
-	
-	void bewegen()
-	{
-		
-	}
-	
-	void bauen()
-	{
-		
-	}
-	
-	void mousePressed()
-	{
-		
-	}
-	
-	void mouseReleased()
-	{
-		
-	}
-	
-	
-	void mouseEntered()
-	{
-		
-	}
-	
-	void mouseExited()
-	{
-		
+		super("grafiken/turmvorschau/turm" + turmId + "1.png", "grafiken/turmvorschau/turm" + turmId + "2.png", "grafiken/turmvorschau/turm" + turmId + "3.png", new VEKTOR(-100, -100), empfaenger, id, ebene);
+		this.turmId = turmId;
 	}
 }

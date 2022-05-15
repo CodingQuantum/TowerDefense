@@ -1,5 +1,7 @@
-import java.util.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Vector;
+import javax.swing.*;
 
 
 public class VERWALTUNG {
@@ -16,18 +18,24 @@ public class VERWALTUNG {
 	
 	VERWALTUNG()
 	{
-		timer = new Timer();
 		karte = new KARTE();
-		oberflaeche = new OBERFLAECHE();
-        angriffstuerme = new Vector();
-        unterstuetzungstuerme = new Vector();
-        gegner = new Vector();
+		oberflaeche = new OBERFLAECHE(this);
+        angriffstuerme = new Vector<>();
+        unterstuetzungstuerme = new Vector<>();
+        gegner = new Vector<>();
         geld = 0;
         leben = 100;
         welle = 0;
-
-
-		
+		timer = new Timer(10, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
+		timer.start();
+	}
+	
+	void prozess()
+	{
+		oberflaeche.prozess();
+		oberflaeche.geld.textSetzen(geld);
+		oberflaeche.leben.textSetzen(leben);
+		oberflaeche.welle.textSetzen(welle);
 	}
 	
 	void pause()
@@ -50,10 +58,11 @@ public class VERWALTUNG {
 			gegner.add(new GEGNER(this, gegner.size()));
 	}
 	
-	void bauen()
+	void bauen(int id, VEKTOR position)
 	{
-        angriffstuerme.add(new ANGRIFFSTURM());
-
+		//TEST
+		new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
+        //angriffstuerme.add(new ANGRIFFSTURM());
 	}
 	
 	void ende()
