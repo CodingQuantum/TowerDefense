@@ -12,9 +12,9 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	//erzeugt das Startmenue
 	STARTBILDSCHIRM()
 	{
-		hintergrund = new BILD("grafiken/startmenue/hintergrund.png", new VEKTOR(920, 540), 0, 2);
-		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(960, 700), this, "start", 3);
-		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(960, 900), this, "schliessen", 3);
+		hintergrund = new BILD("grafiken/startmenue/hintergrund.png", new VEKTOR(920, 540), 0, 7);
+		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(960, 700), this, "start", 8);
+		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(960, 900), this, "schliessen", 8);
 		aktiv = true;
 		position = new VEKTOR(920, 540);
 		x = 0;

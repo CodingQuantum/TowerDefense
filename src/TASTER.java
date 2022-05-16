@@ -10,6 +10,7 @@ class TASTER implements MouseListener
 	JLabel label;
 	UIOBJEKT empfaenger;
 	String id;
+	int ebene;
 	
 	//erzeugt den Taster, das erste Bild bestimmt die Groesse
 	//pfad 1: Bild fuer nicht gedrückten Zustand, pfad2: Bild fuer gedrückten Zustand, pfad3: Bild fuer Ueberfahren mit Mauszeiger 
@@ -24,7 +25,17 @@ class TASTER implements MouseListener
 		positionSetzen(position);
 		this.empfaenger = empfaenger;
 		this.id = id;
+		this.ebene = ebene;
 		FENSTER.paneGeben().add(label);
+	}
+	
+	//aendert die Bilder
+	void bilderAendern(String pfad1, String pfad2, String pfad3)
+	{
+		grafiken[0].entfernen(); grafiken[1].entfernen(); grafiken[2].entfernen();
+		grafiken = new BILD [] {new BILD(pfad1, position, 0, ebene), new BILD(pfad2, position, 0, ebene), new BILD(pfad3, position, 0, ebene + 1)};
+		grafiken[1].sichtbarkeitSetzen(false);
+		grafiken[2].sichtbarkeitSetzen(false);
 	}
 	
 	//setzt die Position des Mittelpunktes

@@ -8,19 +8,20 @@ class KARTENAUSWAHL implements UIOBJEKT
 	TASTER zurueck;
 	
 	boolean aktiv;
+	boolean karteAusgewaehlt = false;
 	VEKTOR position;
 	double x;
 	
 	//erzeugt das Auswahlmenue
 	KARTENAUSWAHL()
 	{
-		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(960, 540), 0, 0);
+		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(960, 540), 0, 5);
 		karten = new TASTER[anzahlKarten];
-		for (int i = 0; i < karten.length; ++i)
+		for (int i = 1; i <= karten.length; ++i)
 		{
-			karten[i] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * i, 880), this, "karte" + i, 1);
+			karten[i - 1] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * (i - 1), 880), this, "karte" + i, 6);
 		}
-		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 1);
+		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 6);
 		aktiv = false;
 		position = new VEKTOR(-960, 540);
 		x = Math.PI / 2;
@@ -41,10 +42,19 @@ class KARTENAUSWAHL implements UIOBJEKT
 	@Override
 	public void tasterGedrueckt(String id)
 	{
-		if (id == "zurueck" && x > Math.PI / 2 - 0.05)
+		if (x > Math.PI / 2 - 0.05)
 		{
-			aktiv = false;
-			x = 0;
+			switch(id)
+			{
+				case "zurueck":
+					aktiv = false;
+					x = 0;
+					break;
+				case "karte1":
+					karteAusgewaehlt = true;
+					x = 0;
+					new VERWALTUNG(1);
+			}
 		}
 	}
 

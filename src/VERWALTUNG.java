@@ -16,9 +16,9 @@ public class VERWALTUNG {
 	int leben;
 	int welle;
 	
-	VERWALTUNG()
+	VERWALTUNG(int kartenId)
 	{
-		karte = new KARTE();
+		karte = new KARTE(kartenId);
 		oberflaeche = new OBERFLAECHE(this);
         angriffstuerme = new Vector<>();
         unterstuetzungstuerme = new Vector<>();
@@ -61,7 +61,7 @@ public class VERWALTUNG {
 	void bauen(int id, VEKTOR position)
 	{
 		//TEST
-		new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
+		if (karte.stelleFrei(position)) new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
         //angriffstuerme.add(new ANGRIFFSTURM());
 	}
 	

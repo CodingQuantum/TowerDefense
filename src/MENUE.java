@@ -38,6 +38,15 @@ class MENUE
 	        		kartenauswahl.x += 0.05;
 	        		startbildschirm.aktiv = true;
 	        	}
+	        	if (kartenauswahl.karteAusgewaehlt == true && kartenauswahl.position.x < 2920)
+	        	{
+	        		kartenauswahl.positionSetzen(new VEKTOR((int) (2000 * Math.sin(kartenauswahl.x) + 920), 540));
+	        		if (kartenauswahl.x < Math.PI / 2 && kartenauswahl.x > Math.PI / 2 - 0.05)
+	        		{
+	        			kartenauswahl.positionSetzen(new VEKTOR(2920, 540));
+	        		}
+	        		kartenauswahl.x += 0.05;
+	        	}
 	        }
 	    });
 		t.start();
