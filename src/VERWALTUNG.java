@@ -60,8 +60,10 @@ public class VERWALTUNG {
 	void bauen(int id, VEKTOR position)
 	{
 		//TEST
-		new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
-        //angriffstuerme.add(new ANGRIFFSTURM());
+		//new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
+		
+        angriffstuerme.add(new ANGRIFFSTURM(position));
+        angriffstuerme.elementAt(0).bild.sichtbarkeitSetzen(true);
 	}
 	
 	void ende()
