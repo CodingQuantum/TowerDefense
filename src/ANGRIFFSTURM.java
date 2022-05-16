@@ -5,9 +5,9 @@ class ANGRIFFSTURM extends TURM
     int schaden;
     GESCHOSS geschossdaten[];
     
-    ANGRIFFSTURM()
+    ANGRIFFSTURM(VEKTOR pos)
     {
-    	position = new VEKTOR(0,0);
+    	position = pos;
         bild = new BILD("../Grafiken/Turm1", position, rate, geschwindigkeit);
         rate = 1;
         geschwindigkeit = 1;

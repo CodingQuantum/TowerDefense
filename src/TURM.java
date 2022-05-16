@@ -18,8 +18,15 @@ class TURM
     }
     
     
-    void InfoAnzeigen()  //Info wieder unsichtbar setzen
+    void InfoAnzeigen()  
     {
         info.sichtbar = true;
     }
+
+    
+    void InfoVerstecken()
+    {
+    	info.sichtbar = false;
+    }
+    
 }

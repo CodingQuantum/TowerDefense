@@ -12,7 +12,7 @@ class OBERFLAECHE implements UIOBJEKT
 	TEXTFELD welle;
 	TASTER [] tuerme;
 	TURMVORSCHAU vorschau;
-	boolean baumodus;
+	boolean bauen;	//Namensdopplung mit Methode
 	VERWALTUNG verwaltung;
 	
 	OBERFLAECHE(VERWALTUNG verwaltung)
@@ -27,13 +27,13 @@ class OBERFLAECHE implements UIOBJEKT
 			tuerme[i] = new TASTER("grafiken/oberflaeche/turmSchalter" + i + "1.png", "grafiken/oberflaeche/turmSchalter" + i + "2.png", "grafiken/oberflaeche/turmSchalter" + i + "3.png", new VEKTOR(1775, 145 + 220 * i), this, "turmSchalter" + (i + 1), 5);
 		}
 		vorschau = new TURMVORSCHAU(0, this, "vorschau", 4);
-		baumodus = false;
+		bauen = false;
 		this.verwaltung = verwaltung;
 	}
 	
 	void prozess()
 	{
-		if (baumodus == true)
+		if (bauen == true)
 		{
 			VEKTOR mausposition = new VEKTOR((int) MouseInfo.getPointerInfo().getLocation().getX(), (int) MouseInfo.getPointerInfo().getLocation().getY());
 			vorschau.positionSetzen(new VEKTOR(mausposition.x / 60 * 60 + 30, mausposition.y / 60 * 60 + 30));
@@ -58,12 +58,13 @@ class OBERFLAECHE implements UIOBJEKT
 	{
 		if (vorschau.turmId != turmId)
 		{
-			vorschau.turmAendern(turmId);;
-			baumodus = true;
+			vorschau.entfernen();
+			vorschau = new TURMVORSCHAU(turmId, this, "vorschau", 4);
+			bauen = true;
 		}
 		else
 		{
-			baumodus = !baumodus;
+			bauen = !bauen;
 			vorschau.positionSetzen(new VEKTOR(-100, -100));
 		}
 	}
