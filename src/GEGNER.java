@@ -16,7 +16,7 @@ public class GEGNER
         geschwindigkeit = 1;
         referenz = verwaltung;
         bild = new BILD("../Grafik/Tank2", position, rotation, 1);
-        //Lebensanzeige einfügen
+        lebensanzeige = new LEBENSANZEIGE();
         rotation = 1;
         gegnerNummer = nummer;
     }
@@ -38,7 +38,7 @@ public class GEGNER
     
     void lebensanzeigeSetzen(int leben)
     {
-       //LEBENSANZEIGE.anzeigeSetzen(leben); 
+    	lebensanzeige.anzeigeSetzen(leben); 
     }
     
    

@@ -49,7 +49,6 @@ public class VERWALTUNG {
 	}
 	
 	
-	//Methode prozess Funktion abklären
 	
 	void welle(int welle)
 	{

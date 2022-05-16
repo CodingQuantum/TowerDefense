@@ -12,7 +12,7 @@ class OBERFLAECHE implements UIOBJEKT
 	TEXTFELD welle;
 	TASTER [] tuerme;
 	TURMVORSCHAU vorschau;
-	boolean bauen;
+	boolean bauen;	//Namensdopplung mit Methode
 	VERWALTUNG verwaltung;
 	
 	OBERFLAECHE(VERWALTUNG verwaltung)
