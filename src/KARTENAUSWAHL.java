@@ -15,7 +15,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 	//erzeugt das Auswahlmenue
 	KARTENAUSWAHL()
 	{
-		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(960, 540), 0, 5);
+		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(920, 540), 0, 5);
 		karten = new TASTER[anzahlKarten];
 		for (int i = 1; i <= karten.length; ++i)
 		{
