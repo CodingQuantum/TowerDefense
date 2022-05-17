@@ -7,7 +7,7 @@ class KARTE
 	boolean [][] matrix;
 	VEKTOR[] wegpunkte;
 	
-	String karte1 = "300,0/1560,600";
+	String karte1 = "5,0/26,10";
 	
 	KARTE(int kartenId)
 	{
@@ -57,7 +57,7 @@ class KARTE
 		for (int i = 0; i < wegpunkte.length; ++i)
 		{
 			String[] werte = vektoren[i].split(",");
-			wegpunkte[i] = new VEKTOR(Integer.parseInt(werte[0]), Integer.parseInt(werte[1]));
+			wegpunkte[i] = new VEKTOR(Integer.parseInt(werte[0]) * 60, Integer.parseInt(werte[1]) * 60);
 		}
 	}
 	
