@@ -4,8 +4,9 @@ import java.util.Vector;
 import javax.swing.*;
 
 
+
 public class VERWALTUNG {
-	Timer timer;
+	Timer timerProzess, timerWelle;
 	KARTE karte;
 	DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
@@ -14,7 +15,7 @@ public class VERWALTUNG {
 	Vector <GEGNER> gegner;
 	int geld;
 	int leben;
-	int welle;
+	int wellennummer;
 	
 	VERWALTUNG(int kartenId)
 	{
@@ -25,9 +26,12 @@ public class VERWALTUNG {
         gegner = new Vector<>();
         geld = 0;
         leben = 100;
-        welle = 0;
-		timer = new Timer(10, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		timer.start();
+        wellennummer = 0;
+		timerProzess = new Timer(10, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
+		timerProzess.start();
+		timerWelle = new Timer(10000, new ActionListener(){public void actionPerformed(ActionEvent e) {welle(wellennummer);}});
+		timerWelle.start();
+
 	}
 	
 	void prozess()
@@ -35,7 +39,7 @@ public class VERWALTUNG {
 		oberflaeche.prozess();
 		oberflaeche.geld.textSetzen(geld);
 		oberflaeche.leben.textSetzen(leben);
-		oberflaeche.welle.textSetzen(welle);
+		oberflaeche.welle.textSetzen(wellennummer);
 	}
 	
 	void pause()
@@ -52,9 +56,10 @@ public class VERWALTUNG {
 	
 	void welle(int welle)
 	{
-		int anzahlGegner = welle * 2;
+		int anzahlGegner = (welle + 1) * 2;
 		for(; anzahlGegner > 0; --anzahlGegner)
 			gegner.add(new GEGNER(this, gegner.size()));
+		wellennummer += 1;
 	}
 	
 	void bauen(int id, VEKTOR position)
