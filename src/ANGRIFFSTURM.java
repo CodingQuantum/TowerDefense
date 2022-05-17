@@ -8,7 +8,7 @@ class ANGRIFFSTURM extends TURM
     ANGRIFFSTURM(VEKTOR pos)
     {
     	position = pos;
-        bild = new BILD("../Grafiken/Turm1", position, rate, geschwindigkeit);
+        bild = new BILD("grafiken/turmvorschau/turm11.png", position, 0, 1);
         rate = 1;
         geschwindigkeit = 1;
         schaden = 7;
