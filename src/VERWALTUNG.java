@@ -59,10 +59,8 @@ public class VERWALTUNG {
 	
 	void bauen(int id, VEKTOR position)
 	{
-		if (karte.stelleFrei(position)) new BILD("grafiken/turmvorschau/turm11.png", position, 0, 2);
-		
-       //angriffstuerme.add(new ANGRIFFSTURM(position));
-       //angriffstuerme.elementAt(0).bild.sichtbarkeitSetzen(true);
+		if(karte.stelleFrei(position))
+			angriffstuerme.add(new ANGRIFFSTURM(position));
 	}
 	
 	void ende()
