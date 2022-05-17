@@ -23,7 +23,7 @@ public class GEGNER
         leben = 100;
         geschwindigkeit = 1;
         referenz = verwaltung;
-        lebensanzeige = new LEBENSANZEIGE();
+        lebensanzeige = new LEBENSANZEIGE(new VEKTOR(0,0), 0);
         rotation = 0;
         gegnerNummer = nummer;
         bild = new BILD("grafiken/turmvorschau/turm12.png", position, rotation, 1);
