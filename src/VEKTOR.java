@@ -11,14 +11,26 @@ class VEKTOR
 		this.y = y;
 	}
 	
-	//gibt die Summe dieses Vektors und des Vektors v zurück
+	//Vektoraddition
 	VEKTOR plus(VEKTOR v)
 	{
 		return new VEKTOR(x + v.x, y + v.y);
 	}
 	
+	//Skalarmultiplikation
+	VEKTOR mal(int r)
+	{
+		return new VEKTOR(x * r, y* r);
+	}
+	
+	//Abstand der Spitzen der Orstverktoren von this und v
+	double abstand(VEKTOR v)
+	{
+		return Math.sqrt((x - v.x) * (x - v.x) + (y - v.y) * (y - v.y));
+	}
+	
 	//gibt den Vektor aus
-	void print()
+	void ausgeben()
 	{
 		System.out.println("(" + x + ", " + y + ")");
 	}

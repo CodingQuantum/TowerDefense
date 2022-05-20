@@ -40,7 +40,7 @@ class TEXTFELD
 		Font schrift = new Font(schriftart, Font.PLAIN, schriftgroesse);
 		label.setFont(schrift);
 		FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
-		label.setSize((int) schrift.getStringBounds(text, frc).getWidth() + 1, (int) schrift.getStringBounds(text, frc).getHeight() + 1);
+		label.setSize((int) schrift.getStringBounds(text, frc).getWidth() + 10, (int) schrift.getStringBounds(text, frc).getHeight());
 	}
 	
 	void textSetzen(int zahl)

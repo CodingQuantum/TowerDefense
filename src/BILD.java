@@ -51,14 +51,10 @@ class BILD
     //setzt die Rotation
     void rotationSetzen(double rotation)
     {
-    	while (rotation >= 2 * Math.PI)
-    	{
+    	while(rotation >= 2 * Math.PI)
     		rotation -= 2 * Math.PI;
-    	}
-    	while (rotation < 0)
-    	{
+    	while(rotation < 0)
     		rotation += 2 * Math.PI;
-    	}
     	this.rotation = rotation;
     	label.repaint();
     }

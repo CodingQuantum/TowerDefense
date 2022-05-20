@@ -12,9 +12,9 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	//erzeugt das Startmenue
 	STARTBILDSCHIRM()
 	{
-		hintergrund = new BILD("grafiken/startmenue/hintergrund.png", new VEKTOR(920, 540), 0, 7);
-		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(960, 700), this, "start", 8);
-		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(960, 900), this, "schliessen", 8);
+		hintergrund = new BILD("grafiken/startmenue/hintergrund.png", new VEKTOR(920, 540), 0, 12);
+		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(960, 700), this, "start", 13);
+		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(960, 900), this, "schliessen", 13);
 		aktiv = true;
 		position = new VEKTOR(920, 540);
 		x = 0;
@@ -33,11 +33,11 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	@Override
 	public void tasterGedrueckt(String id)
 	{
-		if (id == "schliessen")
+		if(id == "schliessen")
 		{
 			FENSTER.schliessen();
 		}
-		else if (id == "start")
+		else if(id == "start")
 		{
 			aktiv = false;
 			x = 0;

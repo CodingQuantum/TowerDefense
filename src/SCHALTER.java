@@ -52,7 +52,7 @@ class SCHALTER implements MouseListener
 	@Override
 	public void mouseClicked(MouseEvent e)
 	{
-		if (zustand == true)
+		if(zustand == true)
 		{
 			zustand = false;
 			grafiken[0].sichtbarkeitSetzen(true);

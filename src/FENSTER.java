@@ -31,6 +31,7 @@ class FENSTER
 	static void schliessen()
 	{
 		frame.dispose();
+		System.exit(0);
 	}
 	
 	//entfernt ein BILD von der Darstellungsflaeche
@@ -43,7 +44,7 @@ class FENSTER
 	//main-Methode, erzeugt das Ausgabefenster und das Menue
 	public static void main(String [] args)
 	{
-		System.setProperty("sun.java2d.uiScale", "1.0");
+		System.setProperty("sun.java2d.uiScale", "0.5");
 		new FENSTER();
 		new MENUE();
 	}

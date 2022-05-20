@@ -15,13 +15,13 @@ class KARTENAUSWAHL implements UIOBJEKT
 	//erzeugt das Auswahlmenue
 	KARTENAUSWAHL()
 	{
-		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(920, 540), 0, 5);
+		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(920, 540), 0, 10);
 		karten = new TASTER[anzahlKarten];
-		for (int i = 1; i <= karten.length; ++i)
+		for(int i = 1; i <= karten.length; ++i)
 		{
-			karten[i - 1] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * (i - 1), 880), this, "karte" + i, 6);
+			karten[i - 1] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * (i - 1), 880), this, "karte" + i, 11);
 		}
-		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 6);
+		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 11);
 		aktiv = false;
 		position = new VEKTOR(-960, 540);
 		x = Math.PI / 2;
@@ -42,7 +42,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 	@Override
 	public void tasterGedrueckt(String id)
 	{
-		if (x > Math.PI / 2 - 0.05)
+		if(x > Math.PI / 2 - 0.05)
 		{
 			switch(id)
 			{

@@ -1,43 +1,11 @@
-
-public class ERGEBNISMENUE 
+class ERGEBNISMENUE 
 {
-	BILD bild;
+	BILD hintergrund;
 	TASTER weiter;
 	TASTER erneut;
 	int ergebnisse[];
 			
 	ERGEBNISMENUE()
-	{
-		
-	}
-	
-	void weiter()
-	{
-		
-	}
-	
-	void erneut()
-	{
-		
-	}
-	
-	void mousePressed()
-	{
-		
-	}
-	
-	void mouseReleased()
-	{
-		
-	}
-	
-	
-	void mouseEntered()
-	{
-		
-	}
-	
-	void mouseExited()
 	{
 		
 	}

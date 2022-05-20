@@ -1,29 +1,38 @@
-public class GESCHOSS
+//Klasse fuer Geschosse von Tuermen
+class GESCHOSS
 {
+	VEKTOR position;
 	BILD bild;
-	VEKTOR positionEnde;
-	VEKTOR positionAnfang;
 	int rotation;
 	int geschwindigkeit;
-
-
-
-GESCHOSS()	
-{
-	VEKTOR positionAnfang = new VEKTOR(1,1);
-	VEKTOR positionEnde = new VEKTOR(2,2);
-	rotation = 1;
-	geschwindigkeit = 20;
+	int schaden;
+	GEGNER ziel;
+	VEKTOR richtung;
 	
-}
-void bewegen()
-{
+	//erzeugt das Geschoss
+	GESCHOSS(VEKTOR position, GEGNER ziel, int[] daten)	
+	{
+		this.position = position;
+		bild = new BILD("grafiken/geschoss/geschoss" + daten[0] + ".png", position, 0, 1);
+		rotation = 0;
+		geschwindigkeit = daten[1];
+		schaden = daten[2];
+		this.ziel = ziel;
+		double entfernung = position.abstand(ziel.position);
+		richtung = new VEKTOR((int) ((ziel.position.x - position.x) / entfernung * geschwindigkeit), (int) ((ziel.position.y - position.y) / entfernung * geschwindigkeit));
+	}
 	
-}
-
-void entfernen()
-{
+	//wird ein mal pro Frame aufgerufen
+	void prozess()
+	{
+		position = position.plus(richtung);
+		bild.positionSetzen(position);
+	}
 	
-}
+	//entfernt das Geschoss
+	void entfernen()
+	{
+		bild.entfernen();
+	}
 }
 

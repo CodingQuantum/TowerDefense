@@ -1,22 +1,50 @@
+//Klasse fuer Tuerme, die Gegner direkt angreifen
 class ANGRIFFSTURM extends TURM
 {
     int rate;
     int geschwindigkeit;
-    int schaden;
-    GESCHOSS geschossdaten[];
+    int reichweite;
+    int[] geschossdaten;
+    double rotation;
     
-    ANGRIFFSTURM(VEKTOR pos)
+    boolean angriffsbereit;
+    int zaehler;
+    
+    //erzeugt den Turm
+    ANGRIFFSTURM(int turmId, VEKTOR position)
     {
-    	position = pos;
-        bild = new BILD("grafiken/turmvorschau/turm11.png", position, 0, 1);
-        rate = 1;
-        geschwindigkeit = 1;
-        schaden = 7;
-        //Geschossdaten
+    	super(turmId, position);
+    	
+    	switch(turmId)
+    	{
+    		case 1:
+    			rate = 40;
+    	        geschwindigkeit = 1;
+    	        reichweite = 240;
+    	        geschossdaten = new int [] {turmId, 30, 20};
+    	        break;
+    	}
+    	
+    	rotation = 0;
+    	angriffsbereit = true;
+    	zaehler = 0;
     }
     
-    void angreifen(/*ZIEL*/) //Zielformat abklären
+    //wird ein mal pro Frame aufgerufen
+    void prozess()
     {
-        
+    	zaehler += 1;
+    	if(zaehler > rate)
+    	{
+    		angriffsbereit = true;
+    		zaehler = 0;
+    	}
+    }
+    
+    //setzt die Rotation
+    void rotationSetzen(double rotation)
+    {
+    	this.rotation = rotation;
+    	bild.rotationSetzen(rotation);
     }
 }

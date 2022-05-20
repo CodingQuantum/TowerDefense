@@ -1,32 +1,15 @@
+//Oberklasse fuer alle Tuerme
 class TURM
 {
     VEKTOR position;
     BILD bild;
-    int reichweite;
-    INFO info;
-    int level;  //ins Klassendiagramm ergänzen
+    int level;
     
-    TURM()
+    //erzeugt den Turm
+    TURM(int turmId, VEKTOR position)
     {
-        
-
+    	this.position = position;
+    	level = 0;
+        bild = new BILD("grafiken/turm/turm" + turmId + ".png", position, 0, 2);
     }
-    
-    void Aufwerten()
-    {
-        ++level;
-    }
-    
-    
-    void InfoAnzeigen()  
-    {
-        info.sichtbar = true;
-    }
-
-    
-    void InfoVerstecken()
-    {
-    	info.sichtbar = false;
-    }
-    
 }

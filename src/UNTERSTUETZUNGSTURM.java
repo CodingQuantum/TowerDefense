@@ -1,9 +1,8 @@
 class UNTERSTUETZUNGSTURM extends TURM
 {
-    //Attribut unterstützung[] funktion abklären?
-    UNTERSTUETZUNGSTURM()
+    UNTERSTUETZUNGSTURM(int turmId, VEKTOR position)
     {
-        super();
+    	super(turmId, position);
     }
 }
 
