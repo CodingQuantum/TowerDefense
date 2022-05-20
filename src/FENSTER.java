@@ -44,7 +44,7 @@ class FENSTER
 	//main-Methode, erzeugt das Ausgabefenster und das Menue
 	public static void main(String [] args)
 	{
-		System.setProperty("sun.java2d.uiScale", "0.5");
+		System.setProperty("sun.java2d.uiScale", "1.0");
 		new FENSTER();
 		new MENUE();
 	}

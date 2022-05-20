@@ -43,11 +43,13 @@ class OBERFLAECHE implements UIOBJEKT
 		if(baumodus == true)
 		{
 			VEKTOR mausposition = new VEKTOR((int) MouseInfo.getPointerInfo().getLocation().getX(), (int) MouseInfo.getPointerInfo().getLocation().getY());
+			VEKTOR positionAlt = vorschau.position;
 			vorschau.positionSetzen(new VEKTOR(mausposition.x / 60 * 60 + 30, mausposition.y / 60 * 60 + 30));
 			if ((vorschau.position.x - 30) / 60 <= 0) vorschau.positionSetzen(new VEKTOR(90, vorschau.position.y));
 			if ((vorschau.position.x - 30) / 60 >= 25) vorschau.positionSetzen(new VEKTOR(1530, vorschau.position.y));
 			if ((vorschau.position.y - 30) / 60 <= 0) vorschau.positionSetzen(new VEKTOR(vorschau.position.x, 90));
 			if ((vorschau.position.y - 30) / 60 >= 17) vorschau.positionSetzen(new VEKTOR(vorschau.position.x, 990));
+			if ((vorschau.position.x - 30) / 60 <= 3 && (vorschau.position.y - 30) / 60 <= 4) vorschau.positionSetzen(positionAlt);
 		}
 	}
 	

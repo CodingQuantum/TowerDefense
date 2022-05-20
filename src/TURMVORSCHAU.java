@@ -6,7 +6,7 @@ class TURMVORSCHAU extends TASTER
 	//erzeugt die Turmvorschau
 	TURMVORSCHAU(int turmId, UIOBJEKT empfaenger, String id, int ebene)
 	{
-		super("grafiken/turmvorschau/turm" + turmId + "1.png", "grafiken/turmvorschau/turm" + turmId + "2.png", "grafiken/turmvorschau/turm" + turmId + "3.png", new VEKTOR(-100, -100), empfaenger, id, ebene);
+		super("grafiken/turmvorschau/turm" + turmId + "1.png", "grafiken/turmvorschau/turm" + turmId + "2.png", "grafiken/empty.png", new VEKTOR(-1000, -1000), empfaenger, id, ebene);
 		this.turmId = turmId;
 	}
 	
