@@ -25,8 +25,8 @@ class GEGNER
         	case 0:
         		lebenMaximal = 100;
         		leben = lebenMaximal;
-                geschwindigkeit = 5;
-                schaden = 1;
+                geschwindigkeit = 50;
+                schaden = 100;
                 belohnung = 10;
         		break;
         }

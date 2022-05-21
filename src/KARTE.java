@@ -79,4 +79,10 @@ class KARTE
 		}
 		return new VEKTOR(3000, 3000);
 	}
+	
+	//entfernt die Karte
+	void entfernen()
+	{
+		hintergrund.entfernen();
+	}
 }

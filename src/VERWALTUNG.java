@@ -6,10 +6,11 @@ import javax.swing.*;
 //zentrale Verwaltungsklasse des eigentlichen Spiels
 class VERWALTUNG
 {
-	Timer timerProzess, timerWelle;
+	Timer timer;
 	KARTE karte;
 	DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
+	ERGEBNISMENUE ergebnismenue;
 	Vector <ANGRIFFSTURM> angriffstuerme;
 	Vector <UNTERSTUETZUNGSTURM> unterstuetzungstuerme;
 	Vector <GEGNER> gegner;
@@ -20,7 +21,7 @@ class VERWALTUNG
 	int[] preisliste;
 	
 	//erzeugt die Verwaltungsklasse
-	VERWALTUNG(int kartenId)
+	VERWALTUNG(int kartenId, KARTENAUSWAHL kartenauswahl)
 	{
 		karte = new KARTE(kartenId);
 		oberflaeche = new OBERFLAECHE(this);
@@ -31,14 +32,21 @@ class VERWALTUNG
         geld = 20;
         leben = 100;
         wellennummer = 0;
-		timerProzess = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		timerProzess.start();
+		timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
+		timer.start();
 		preisliste = new int [] {0, 10};
+		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
 	}
 	
 	//wird ein mal pro Frame aufgerufen
 	void prozess()
 	{
+		//Tod
+		if(leben <= 0)
+		{
+			ende();
+		}
+		
 		//Start der neuen Welle
 		if(gegner.size() == 0)
 			welle(wellennummer);
@@ -127,16 +135,23 @@ class VERWALTUNG
 		return gegnerFinden(turm, index - 1);
 	}
 	
+	//Aktion, die beim Verlieren ausgefuehrt wird
+	void ende()
+	{
+		if(ergebnismenue.kartenauswahl.position.x == 920)
+			new FENSTER();
+	}
+	
 	//pausiert und startet das Spiel
 	void pause(boolean pause)
 	{
 		if (pause == true)
 		{
-			timerProzess.stop();
+			timer.stop();
 		}
 		else
 		{
-			timerProzess.start();
+			timer.start();
 		}
 	}
 	
