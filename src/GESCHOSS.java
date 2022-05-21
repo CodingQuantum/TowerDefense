@@ -13,7 +13,7 @@ class GESCHOSS
 	GESCHOSS(VEKTOR position, GEGNER ziel, int[] daten)	
 	{
 		this.position = position;
-		bild = new BILD("grafiken/geschoss/geschoss" + daten[0] + ".png", position, 0, 1);
+		bild = new BILD("grafiken/geschoss/geschoss" + daten[0] + ".png", position, 0, 2);
 		rotation = 0;
 		geschwindigkeit = daten[1];
 		schaden = daten[2];

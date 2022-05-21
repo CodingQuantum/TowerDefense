@@ -10,6 +10,6 @@ class TURM
     {
     	this.position = position;
     	level = 0;
-        bild = new BILD("grafiken/turm/turm" + turmId + ".png", position, 0, 2);
+        bild = new BILD("grafiken/turm/turm" + turmId + ".png", position, 0, 1);
     }
 }
