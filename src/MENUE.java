@@ -1,7 +1,7 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-//Klasse fuer die Verwaltung der Menues
+//Klasse fuer die Verwaltung der Menues, die beim Start angezeigt werden
 class MENUE
 {
 	STARTBILDSCHIRM startbildschirm;
@@ -39,13 +39,6 @@ class MENUE
 	        		kartenauswahl.positionSetzen(new VEKTOR((int) (2000 * Math.sin(kartenauswahl.x) + 920), 540));
 	        		if(kartenauswahl.x < Math.PI / 2 && kartenauswahl.x > Math.PI / 2 - 0.05)
 	        			kartenauswahl.positionSetzen(new VEKTOR(2920, 540));
-	        		kartenauswahl.x += 0.05;
-	        	}
-	        	if(kartenauswahl.karteAusgewaehlt == false && kartenauswahl.position.x > 920)
-	        	{
-	        		kartenauswahl.positionSetzen(new VEKTOR((int) (-2000 * Math.sin(kartenauswahl.x) + 2920), 540));
-	        		if(kartenauswahl.x < Math.PI / 2 && kartenauswahl.x > Math.PI / 2 - 0.05)
-	        			kartenauswahl.positionSetzen(new VEKTOR(920, 540));
 	        		kartenauswahl.x += 0.05;
 	        	}
 	        }

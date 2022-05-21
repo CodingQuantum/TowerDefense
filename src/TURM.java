@@ -12,10 +12,4 @@ class TURM
     	level = 0;
         bild = new BILD("grafiken/turm/turm" + turmId + ".png", position, 0, 1);
     }
-    
-    //entfernt den Turm
-    void entfernen()
-    {
-    	bild.entfernen();
-    }
 }

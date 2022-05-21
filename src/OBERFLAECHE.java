@@ -27,7 +27,7 @@ class OBERFLAECHE implements UIOBJEKT
 			tuerme[i] = new TASTER("grafiken/oberflaeche/turmSchalter" + i + "1.png", "grafiken/oberflaeche/turmSchalter" + i + "2.png", "grafiken/oberflaeche/turmSchalter" + i + "3.png", new VEKTOR(1775, 145 + 220 * i), this, "turmSchalter" + (i + 1), 5);
 		}
 		pause = new SCHALTER("grafiken/oberflaeche/pause1.png", "grafiken/oberflaeche/pause2.png", "grafiken/oberflaeche/pause3.png", new VEKTOR(1520, 100), this, "pause", 6);
-		schliessen = new TASTER("grafiken/oberflaeche/schliessen1.png", "grafiken/oberflaeche/schliessen2.png", "grafiken/oberflaeche/schliessen3.png", new VEKTOR(1370, 100), this, "schliessen", 8);
+		schliessen = new TASTER("grafiken/oberflaeche/schliessen1.png", "grafiken/oberflaeche/schliessen2.png", "grafiken/oberflaeche/schliessen3.png", new VEKTOR(1370, 100), this, "schliessen", 6);
 		vorschau = new TURMVORSCHAU(1, this, "vorschau", 3);
 		baumodus = false;
 		this.verwaltung = verwaltung;
@@ -62,22 +62,6 @@ class OBERFLAECHE implements UIOBJEKT
 			baumodus = !baumodus;
 			vorschau.positionSetzen(new VEKTOR(-1000, -1000));
 		}
-	}
-	
-	//entfernt die Oberflaeche
-	void entfernen()
-	{
-		hintergrund.entfernen();
-		geld.entfernen();
-		leben.entfernen();
-		welle.entfernen();
-		for(int i = 0; i < tuerme.length; ++i)
-		{
-			tuerme[i].entfernen();
-		}
-		pause.entfernen();
-		schliessen.entfernen();
-		vorschau.entfernen();
 	}
 	
 	//wird beim Druecken eines Tasters aufgerufen
