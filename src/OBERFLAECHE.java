@@ -1,8 +1,4 @@
 import java.awt.MouseInfo;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.Timer;
 
 //Oberflaeche, die beim eigentlichen Spielen angezeigt wird
 class OBERFLAECHE implements UIOBJEKT
