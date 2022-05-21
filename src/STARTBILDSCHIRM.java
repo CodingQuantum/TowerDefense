@@ -29,8 +29,7 @@ class STARTBILDSCHIRM implements UIOBJEKT
 		schliessen.positionSetzen(position.plus(new VEKTOR(40, 360)));
 	}
 	
-	//fuehrt Aktionen beim Druecken der Knoepfe aus
-	@Override
+	//fuehrt Aktionen beim Druecken der Taster aus
 	public void tasterGedrueckt(String id)
 	{
 		if(id == "schliessen")
@@ -44,7 +43,7 @@ class STARTBILDSCHIRM implements UIOBJEKT
 		}
 	}
 	
-	@Override
+	//fuehrt Aktionen beim Druecken der Schalter aus
 	public void schalterGedrueckt(String id, boolean zustand)
 	{
 		

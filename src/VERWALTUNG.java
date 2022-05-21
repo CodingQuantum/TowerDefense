@@ -155,7 +155,10 @@ class VERWALTUNG
 		{
 			ergebnismenue.positionSetzen(new VEKTOR(960, (int) (-540 * Math.sin(ergebnismenue.x - Math.PI / 2) + 1080)));
 			if(ergebnismenue.x < Math.PI && ergebnismenue.x > Math.PI - 0.1)
+			{
 				ergebnismenue.positionSetzen(new VEKTOR(960, 540));
+				timer.stop();
+			}
 			ergebnismenue.x += 0.1;
 		}
 	}

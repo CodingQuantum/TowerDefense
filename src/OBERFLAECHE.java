@@ -27,7 +27,7 @@ class OBERFLAECHE implements UIOBJEKT
 			tuerme[i] = new TASTER("grafiken/oberflaeche/turmSchalter" + i + "1.png", "grafiken/oberflaeche/turmSchalter" + i + "2.png", "grafiken/oberflaeche/turmSchalter" + i + "3.png", new VEKTOR(1775, 145 + 220 * i), this, "turmSchalter" + (i + 1), 5);
 		}
 		pause = new SCHALTER("grafiken/oberflaeche/pause1.png", "grafiken/oberflaeche/pause2.png", "grafiken/oberflaeche/pause3.png", new VEKTOR(1520, 100), this, "pause", 6);
-		schliessen = new TASTER("grafiken/oberflaeche/schliessen1.png", "grafiken/oberflaeche/schliessen2.png", "grafiken/oberflaeche/schliessen3.png", new VEKTOR(1370, 100), this, "schliessen", 8);
+		schliessen = new TASTER("grafiken/oberflaeche/schliessen1.png", "grafiken/oberflaeche/schliessen2.png", "grafiken/oberflaeche/schliessen3.png", new VEKTOR(1370, 100), this, "schliessen", 6);
 		vorschau = new TURMVORSCHAU(1, this, "vorschau", 3);
 		baumodus = false;
 		this.verwaltung = verwaltung;
@@ -67,28 +67,31 @@ class OBERFLAECHE implements UIOBJEKT
 	//wird beim Druecken eines Tasters aufgerufen
 	public void tasterGedrueckt(String id)
 	{
-		if(pause.zustand == false)
+		if(verwaltung.timer.isRunning())
 		{
-			switch(id)
+			if(pause.zustand == false)
 			{
-				case "turmSchalter1":
-					turmvorschau(1);
-					break;
-				case "vorschau":
-					verwaltung.bauen(vorschau.turmId, vorschau.position);
-					break;
+				switch(id)
+				{
+					case "turmSchalter1":
+						turmvorschau(1);
+						break;
+					case "vorschau":
+						verwaltung.bauen(vorschau.turmId, vorschau.position);
+						break;
+				}
 			}
-		}
-		if(id == "schliessen")
-		{
-			FENSTER.schliessen();
+			if(id == "schliessen")
+			{
+				FENSTER.schliessen();
+			}
 		}
 	}
 	
 	//wird beim Druecken eines Schalters aufgerufen
 	public void schalterGedrueckt(String id, boolean zustand)
 	{
-		if(id == "pause")
+		if(id == "pause" && verwaltung.timer.isRunning())
 		{
 			verwaltung.pause(zustand);
 		}
