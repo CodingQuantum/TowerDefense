@@ -30,7 +30,6 @@ class FENSTER
 	//schliesst das Ausgabefenster
 	static void schliessen()
 	{
-		frame.dispose();
 		System.exit(0);
 	}
 	

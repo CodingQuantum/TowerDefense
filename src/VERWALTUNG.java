@@ -6,10 +6,11 @@ import javax.swing.*;
 //zentrale Verwaltungsklasse des eigentlichen Spiels
 class VERWALTUNG
 {
-	Timer timerProzess, timerWelle;
+	Timer timer;
 	KARTE karte;
 	DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
+	ERGEBNISMENUE ergebnismenue;
 	Vector <ANGRIFFSTURM> angriffstuerme;
 	Vector <UNTERSTUETZUNGSTURM> unterstuetzungstuerme;
 	Vector <GEGNER> gegner;
@@ -31,14 +32,19 @@ class VERWALTUNG
         geld = 20;
         leben = 100;
         wellennummer = 0;
-		timerProzess = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		timerProzess.start();
+        timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
+        timer.start();
 		preisliste = new int [] {0, 10};
+		ergebnismenue = new ERGEBNISMENUE();
 	}
 	
 	//wird ein mal pro Frame aufgerufen
 	void prozess()
 	{
+		//Tod
+		if(leben <= 0)
+			ende();
+		
 		//Start der neuen Welle
 		if(gegner.size() == 0)
 			welle(wellennummer);
@@ -67,9 +73,9 @@ class VERWALTUNG
 		{
 			ANGRIFFSTURM a = angriffstuerme.get(j);
 			a.prozess();
-			GEGNER z = gegnerFinden(a, gegner.size() - 1);
 			if(a.angriffsbereit)
 			{
+				GEGNER z = gegnerFinden(a, gegner.size() - 1);
 				if(z != null)
 				{
 					a.angriffsbereit = false;
@@ -117,6 +123,13 @@ class VERWALTUNG
 		oberflaeche.welle.textSetzen(wellennummer);
 	}
 	
+	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
+	void ende()
+	{
+		ergebnismenue.positionSetzen(new VEKTOR(960, 540));
+		timer.stop();
+	}
+	
 	//gibt den vordersten Gegner zurueck, der in der Reichweite eines Turms liegt
 	GEGNER gegnerFinden(ANGRIFFSTURM turm, int index)
 	{
@@ -132,11 +145,11 @@ class VERWALTUNG
 	{
 		if (pause == true)
 		{
-			timerProzess.stop();
+			timer.stop();
 		}
 		else
 		{
-			timerProzess.start();
+			timer.start();
 		}
 	}
 	

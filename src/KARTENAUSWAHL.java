@@ -34,7 +34,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 		hintergrund.positionSetzen(position);
 		for (int i = 0; i < karten.length; ++i)
 		{
-			karten[i].positionSetzen(position);
+			karten[i].positionSetzen(position.plus(new VEKTOR(-570 + 500 * i, 340)));
 		}
 		zurueck.positionSetzen(position.plus(new VEKTOR(610, 340)));
 	}
