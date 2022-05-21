@@ -11,9 +11,16 @@ class KARTE
 	String wegpunkteKarte1 = "5,-1/5,5/13,5/13,9/3,9/3,15/19,15/19,4/24,4/24,10/28,10";
 	
 	//erzeugt die Karte
-	KARTE(int kartenId)
+	KARTE()
 	{
 		matrix = new boolean[27][18];
+		hintergrund = new BILD("grafiken/empty.png", new VEKTOR(810, 540), 0, 0);
+	}
+	
+	//initialisiert die Karte
+	void karteSetzen(int kartenId)
+	{
+		hintergrund.entfernen();
 		hintergrund = new BILD("grafiken/karten/karte" + kartenId + ".png", new VEKTOR(810, 540), 0, 0);
 		matrixErzeugen(kartenId);
 		wegpunkteErzeugen(kartenId);

@@ -11,6 +11,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 	boolean karteAusgewaehlt = false;
 	VEKTOR position;
 	double x;
+	VERWALTUNG verwaltung;
 	
 	//erzeugt das Auswahlmenue
 	KARTENAUSWAHL()
@@ -25,6 +26,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 		aktiv = false;
 		position = new VEKTOR(-960, 540);
 		x = Math.PI / 2;
+		verwaltung = new VERWALTUNG(this);
 	}
 	
 	//setzt die Position
@@ -36,7 +38,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 		{
 			karten[i].positionSetzen(position.plus(new VEKTOR(-570 + 500 * i, 340)));
 		}
-		zurueck.positionSetzen(position.plus(new VEKTOR(610, 340)));
+		zurueck.positionSetzen(position.plus(new VEKTOR(650, 340)));
 	}
 	
 	@Override
@@ -53,7 +55,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 				case "karte1":
 					karteAusgewaehlt = true;
 					x = 0;
-					new VERWALTUNG(1);
+					verwaltung.start(1);
 			}
 		}
 	}

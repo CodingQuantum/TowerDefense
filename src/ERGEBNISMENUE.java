@@ -9,14 +9,16 @@ class ERGEBNISMENUE implements UIOBJEKT
 	TASTER ok;
 	
 	KARTENAUSWAHL kartenauswahl;
+	double x;
 	
 	//erzeugt das Ergebnismenue
-	ERGEBNISMENUE()
+	ERGEBNISMENUE(KARTENAUSWAHL kartenauswahl)
 	{
 		position = new VEKTOR(-960, 540);
 		hintergrund = new BILD("grafiken/ergebnismenue/hintergrund.png", position, 0, 7);
 		ok = new TASTER("grafiken/ergebnismenue/ok1.png", "grafiken/ergebnismenue/ok2.png", "grafiken/ergebnismenue/ok3.png", position.plus(new VEKTOR(0, 300)), this, "ok", 8);
 		this.kartenauswahl = kartenauswahl;
+		x = 0;
 	}
 	
 	//setzt die Position
@@ -32,8 +34,9 @@ class ERGEBNISMENUE implements UIOBJEKT
 	{
 		if(id == "ok")
 		{
-			//aktuell nur zum Testen
-			FENSTER.schliessen();
+			kartenauswahl.x = 0;
+			kartenauswahl.aktiv = true;
+			kartenauswahl.karteAusgewaehlt = false;
 		}
 	}
 	

@@ -19,23 +19,45 @@ class VERWALTUNG
 	int leben;
 	int wellennummer;
 	int[] preisliste;
+	boolean pauseWellen;
 	
 	//erzeugt die Verwaltungsklasse
-	VERWALTUNG(int kartenId)
+	VERWALTUNG(KARTENAUSWAHL kartenauswahl)
 	{
-		karte = new KARTE(kartenId);
+		karte = new KARTE();
 		oberflaeche = new OBERFLAECHE(this);
         angriffstuerme = new Vector<>();
         unterstuetzungstuerme = new Vector<>();
         gegner = new Vector<>();
         geschosse = new Vector<>();
-        geld = 20;
-        leben = 100;
-        wellennummer = 0;
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-        timer.start();
 		preisliste = new int [] {0, 10};
-		ergebnismenue = new ERGEBNISMENUE();
+		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
+	}
+	
+	//initalisiert das Spiel
+	void start(int kartenId)
+	{
+		for(int a = 0; a < angriffstuerme.size(); ++a)
+			angriffstuerme.get(a).entfernen();
+		for(int b = 0; b < unterstuetzungstuerme.size(); ++b)
+			unterstuetzungstuerme.get(b).entfernen();
+		for(int c = 0; c < gegner.size(); ++c)
+			gegner.get(c).entfernen();
+		for(int d = 0; d < geschosse.size(); ++d)
+			geschosse.get(d).entfernen();
+		angriffstuerme.removeAllElements();
+		unterstuetzungstuerme.removeAllElements();
+		gegner.removeAllElements();
+		geschosse.removeAllElements();
+		karte.karteSetzen(kartenId);
+	    timer.start();
+	    geld = 20;
+	    leben = 100;
+	    wellennummer = 0;
+	    pauseWellen = false;
+	    ergebnismenue.positionSetzen(new VEKTOR(960, 1620));
+	    ergebnismenue.x = 0;
 	}
 	
 	//wird ein mal pro Frame aufgerufen
@@ -47,7 +69,8 @@ class VERWALTUNG
 		
 		//Start der neuen Welle
 		if(gegner.size() == 0)
-			welle(wellennummer);
+			if(!pauseWellen)
+				welle(wellennummer);
 		
 		//Bewegung der Gegner
 		for(int i = 0; i < gegner.size(); ++i)
@@ -126,8 +149,15 @@ class VERWALTUNG
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
 	void ende()
 	{
-		ergebnismenue.positionSetzen(new VEKTOR(960, 540));
-		timer.stop();
+		leben = 0;
+		pauseWellen = true;
+		if(ergebnismenue.position.y > 540)
+		{
+			ergebnismenue.positionSetzen(new VEKTOR(960, (int) (-540 * Math.sin(ergebnismenue.x - Math.PI / 2) + 1080)));
+			if(ergebnismenue.x < Math.PI && ergebnismenue.x > Math.PI - 0.1)
+				ergebnismenue.positionSetzen(new VEKTOR(960, 540));
+			ergebnismenue.x += 0.1;
+		}
 	}
 	
 	//gibt den vordersten Gegner zurueck, der in der Reichweite eines Turms liegt

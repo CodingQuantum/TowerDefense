@@ -25,8 +25,8 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	{
 		this.position = position;
 		hintergrund.positionSetzen(position);
-		start.positionSetzen(position.plus(new VEKTOR(0, 160)));
-		schliessen.positionSetzen(position.plus(new VEKTOR(0, 360)));
+		start.positionSetzen(position.plus(new VEKTOR(40, 160)));
+		schliessen.positionSetzen(position.plus(new VEKTOR(40, 360)));
 	}
 	
 	//fuehrt Aktionen beim Druecken der Knoepfe aus
