@@ -70,11 +70,7 @@ class KARTE
 	//gibt zurueck, ob die betreffende Stelle auf der Karte frei ist
 	boolean stelleFrei(VEKTOR position)
 	{
-		if(matrix[position.x / 60][position.y / 60] == false)
-		{
-			return false;
-		}
-		return true;
+		return matrix[position.x / 60][position.y / 60];
 	}
 	
 	//gibt den Wegpunkt mit dem angegebenen Index zurueck

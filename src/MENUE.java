@@ -25,7 +25,7 @@ class MENUE
 	        		startbildschirm.x += 0.1;
 	        		kartenauswahl.aktiv = true;
 	        	}
-	        	if(kartenauswahl.aktiv == false && startbildschirm.position.x > 920)
+	        	else if(kartenauswahl.aktiv == false && startbildschirm.position.x > 920)
 	        	{
 	        		startbildschirm.positionSetzen(new VEKTOR((int) (-1000 * Math.sin(kartenauswahl.x - Math.PI / 2) + 1920), 540));
 	        		if(kartenauswahl.x < Math.PI && kartenauswahl.x > Math.PI - 0.1)
@@ -33,14 +33,14 @@ class MENUE
 	        		kartenauswahl.x += 0.1;
 	        		startbildschirm.aktiv = true;
 	        	}
-	        	if(kartenauswahl.karteAusgewaehlt == true && kartenauswahl.position.x < 2920)
+	        	else if(kartenauswahl.karteAusgewaehlt == true && kartenauswahl.position.x < 2920)
 	        	{
 	        		kartenauswahl.positionSetzen(new VEKTOR((int) (1000 * Math.sin(kartenauswahl.x - Math.PI / 2) + 1920), 540));
 	        		if(kartenauswahl.x < Math.PI && kartenauswahl.x > Math.PI - 0.1)
 	        			kartenauswahl.positionSetzen(new VEKTOR(2920, 540));
 	        		kartenauswahl.x += 0.1;
 	        	}
-	        	if(kartenauswahl.karteAusgewaehlt == false && kartenauswahl.position.x > 920)
+	        	else if(kartenauswahl.karteAusgewaehlt == false && kartenauswahl.position.x > 920)
 	        	{
 	        		kartenauswahl.positionSetzen(new VEKTOR((int) (-1000 * Math.sin(kartenauswahl.x - Math.PI / 2) + 1920), 540));
 	        		if(kartenauswahl.x < Math.PI && kartenauswahl.x > Math.PI - 0.1)

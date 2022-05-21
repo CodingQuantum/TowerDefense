@@ -3,6 +3,7 @@ class GEGNER
 {
     VEKTOR position;
     double rotation;
+    int lebenMaximal;
     int leben;
     int geschwindigkeit;
     int schaden;
@@ -10,7 +11,6 @@ class GEGNER
     LEBENSANZEIGE lebensanzeige;
     BILD bild;
     
-    int lebenMaximal;
     VEKTOR bewegung;
     KARTE karte;
     VEKTOR wegpunkt;
@@ -26,16 +26,16 @@ class GEGNER
         		lebenMaximal = 100;
         		leben = lebenMaximal;
                 geschwindigkeit = 5;
-                schaden = 10;
+                schaden = 100;
                 belohnung = 10;
         		break;
         }
     	
     	position = karte.wegpunkt(0).plus(new VEKTOR(0, -nummer * 120));
-    	bewegung = new VEKTOR(0, geschwindigkeit);
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
         bild = new BILD("grafiken/gegner/gegner" + gegnerId + ".png", position, rotation, 2);
+        bewegung = new VEKTOR(0, geschwindigkeit);
         this.karte = karte;
         wegpunkt = karte.wegpunkt(0);
         wegpunktNummer = 0;

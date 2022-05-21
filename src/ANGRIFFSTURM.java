@@ -14,7 +14,6 @@ class ANGRIFFSTURM extends TURM
     ANGRIFFSTURM(int turmId, VEKTOR position)
     {
     	super(turmId, position);
-    	
     	switch(turmId)
     	{
     		case 1:
@@ -24,7 +23,6 @@ class ANGRIFFSTURM extends TURM
     	        geschossdaten = new int [] {turmId, 30, 20};
     	        break;
     	}
-    	
     	rotation = 0;
     	angriffsbereit = true;
     	zaehler = 0;
@@ -34,7 +32,7 @@ class ANGRIFFSTURM extends TURM
     void prozess()
     {
     	zaehler += 1;
-    	if(zaehler > rate)
+    	if(zaehler >= rate)
     	{
     		angriffsbereit = true;
     		zaehler = 0;

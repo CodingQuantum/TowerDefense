@@ -40,7 +40,7 @@ class FENSTER
         pane.repaint();
     }
 	
-	//main-Methode, erzeugt das Ausgabefenster und das Menue
+	//main-Methode, erzeugt das Ausgabefenster und das Spiel
 	public static void main(String [] args)
 	{
 		System.setProperty("sun.java2d.uiScale", "1.0");

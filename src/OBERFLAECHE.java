@@ -11,6 +11,7 @@ class OBERFLAECHE implements UIOBJEKT
 	SCHALTER pause;
 	TASTER schliessen;
 	TURMVORSCHAU vorschau;
+	
 	boolean baumodus;
 	VERWALTUNG verwaltung;
 	
@@ -67,7 +68,7 @@ class OBERFLAECHE implements UIOBJEKT
 	//wird beim Druecken eines Tasters aufgerufen
 	public void tasterGedrueckt(String id)
 	{
-		if(verwaltung.timer.isRunning())
+		if(verwaltung.leben > 0)
 		{
 			if(pause.zustand == false)
 			{
@@ -91,7 +92,7 @@ class OBERFLAECHE implements UIOBJEKT
 	//wird beim Druecken eines Schalters aufgerufen
 	public void schalterGedrueckt(String id, boolean zustand)
 	{
-		if(id == "pause" && verwaltung.timer.isRunning())
+		if(id == "pause" && verwaltung.leben > 0)
 		{
 			verwaltung.pause(zustand);
 		}

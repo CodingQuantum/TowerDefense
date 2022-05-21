@@ -54,10 +54,12 @@ class VERWALTUNG
 	    timer.start();
 	    geld = 20;
 	    leben = 100;
-	    wellennummer = 0;
+	    wellennummer = 1;
 	    pauseWellen = false;
 	    ergebnismenue.positionSetzen(new VEKTOR(960, 1620));
 	    ergebnismenue.x = 0;
+	    if(oberflaeche.pause.zustand)
+	    	oberflaeche.pause.mouseClicked(null);
 	}
 	
 	//wird ein mal pro Frame aufgerufen
@@ -143,7 +145,7 @@ class VERWALTUNG
 		oberflaeche.prozess();
 		oberflaeche.geld.textSetzen(geld);
 		oberflaeche.leben.textSetzen(leben);
-		oberflaeche.welle.textSetzen(wellennummer);
+		oberflaeche.welle.textSetzen(wellennummer - 1);
 	}
 	
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
@@ -176,7 +178,7 @@ class VERWALTUNG
 	//pausiert und startet das Spiel
 	void pause(boolean pause)
 	{
-		if (pause == true)
+		if (pause)
 		{
 			timer.stop();
 		}
@@ -189,13 +191,13 @@ class VERWALTUNG
 	//laed die neue Welle
 	void welle(int welle)
 	{
-		int anzahlGegner = welle + 1;
+		int anzahlGegner = welle * 2;
 		for(; anzahlGegner > 0; --anzahlGegner)
 		{
 			gegner.add(new GEGNER(karte, 0, anzahlGegner, this));
 		}
 		wellennummer += 1;
-		geld += 20 + welle / 10;
+		geld += welle - 1;
 	}
 	
 	//ueberprueft auf Platz und Geld und fuegt gegbenenfalls den neuen Turm hinzu

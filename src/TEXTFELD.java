@@ -43,6 +43,7 @@ class TEXTFELD
 		label.setSize((int) schrift.getStringBounds(text, frc).getWidth() + 10, (int) schrift.getStringBounds(text, frc).getHeight());
 	}
 	
+	//setzt den Text auf Basis einer Zahl
 	void textSetzen(int zahl)
 	{
 		textSetzen(String.valueOf(zahl));
