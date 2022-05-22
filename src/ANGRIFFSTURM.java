@@ -1,11 +1,11 @@
 //Klasse fuer Tuerme, die Gegner direkt angreifen
 class ANGRIFFSTURM extends TURM
 {
-    int rate;
-    int geschwindigkeit;
+    int abklingzeit;
     int reichweite;
+    int geschwindigkeit;
+    int schaden;
     int[] geschossdaten;
-    double rotation;
     
     boolean angriffsbereit;
     int zaehler;
@@ -17,13 +17,13 @@ class ANGRIFFSTURM extends TURM
     	switch(turmId)
     	{
     		case 1:
-    			rate = 40;
-    	        geschwindigkeit = 1;
+    			abklingzeit = 40;
     	        reichweite = 240;
-    	        geschossdaten = new int [] {turmId, 30, 20};
+    	        geschwindigkeit = 30;
+    	        schaden = 20;
+    	        geschossdaten = new int [] {turmId, geschwindigkeit, schaden};
     	        break;
     	}
-    	rotation = 0;
     	angriffsbereit = true;
     	zaehler = 0;
     }
@@ -32,17 +32,10 @@ class ANGRIFFSTURM extends TURM
     void prozess()
     {
     	zaehler += 1;
-    	if(zaehler >= rate)
+    	if(zaehler >= abklingzeit)
     	{
     		angriffsbereit = true;
     		zaehler = 0;
     	}
-    }
-    
-    //setzt die Rotation
-    void rotationSetzen(double rotation)
-    {
-    	this.rotation = rotation;
-    	bild.rotationSetzen(rotation);
     }
 }

@@ -31,7 +31,7 @@ class KARTE
 	{
 		ImageIcon icon = new ImageIcon(getClass().getResource("grafiken/karten/karteGitter" + kartenId + ".png"));
 		BufferedImage i = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-		i.getGraphics().drawImage(icon.getImage(), 0,0, icon.getImageObserver());
+		i.getGraphics().drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
 		for(int x = 0; x < 27; ++x)
 		{
 			for(int y = 0; y < 18; y++)

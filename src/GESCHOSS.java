@@ -10,7 +10,7 @@ class GESCHOSS
 	VEKTOR richtung;
 	
 	//erzeugt das Geschoss
-	GESCHOSS(VEKTOR position, GEGNER ziel, int[] daten)	
+	GESCHOSS(VEKTOR position, GEGNER ziel, int[] daten)
 	{
 		this.position = position;
 		rotation = 0;

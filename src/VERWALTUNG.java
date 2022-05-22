@@ -188,7 +188,7 @@ class VERWALTUNG
 		}
 	}
 	
-	//laed die neue Welle
+	//laedt die neue Welle
 	void welle(int welle)
 	{
 		int anzahlGegner = welle * 2;
@@ -200,7 +200,7 @@ class VERWALTUNG
 		geld += welle - 1;
 	}
 	
-	//ueberprueft auf Platz und Geld und fuegt gegbenenfalls den neuen Turm hinzu
+	//ueberprueft auf Platz und Geld und fuegt gegebenenfalls den neuen Turm hinzu
 	void bauen(int id, VEKTOR position)
 	{
 		if (karte.stelleFrei(position) && geld >= preisliste[id])
