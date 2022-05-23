@@ -34,7 +34,7 @@ class KARTE
 		i.getGraphics().drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
 		for(int x = 0; x < 27; ++x)
 		{
-			for(int y = 0; y < 18; y++)
+			for(int y = 0; y < 18; ++y)
 			{
 				if(i.getRGB(x, y) != 0)
 				{

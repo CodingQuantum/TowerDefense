@@ -194,7 +194,7 @@ class VERWALTUNG
 		int anzahlGegner = welle * 2;
 		for(; anzahlGegner > 0; --anzahlGegner)
 		{
-			gegner.add(new GEGNER(karte, 0, anzahlGegner, this));
+			gegner.add(new GEGNER(karte, 0, anzahlGegner));
 		}
 		wellennummer += 1;
 		geld += welle - 1;

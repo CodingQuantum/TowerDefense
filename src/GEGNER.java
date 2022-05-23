@@ -15,10 +15,9 @@ class GEGNER
     KARTE karte;
     VEKTOR wegpunkt;
     int wegpunktNummer;
-    VERWALTUNG verwaltung;
     
     //erzeugt den Gegner (am ersten Wegpunkt)
-    GEGNER(KARTE karte, int gegnerId, int nummer, VERWALTUNG verwaltung)
+    GEGNER(KARTE karte, int gegnerId, int nummer)
     {
     	switch(gegnerId)
         {
@@ -39,7 +38,6 @@ class GEGNER
         this.karte = karte;
         wegpunkt = karte.wegpunkt(0);
         wegpunktNummer = 0;
-        this.verwaltung = verwaltung;
     }
     
     //wird einmal pro Frame aufgerufen
