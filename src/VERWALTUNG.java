@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.*;
+import java.io.*;
 
 //zentrale Verwaltungsklasse des eigentlichen Spiels
 class VERWALTUNG
@@ -33,6 +34,8 @@ class VERWALTUNG
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
 		preisliste = new int [] {0, 10};
 		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
+		File Data = new File("./Data");
+		datenbank = new DATENBANK(Data);
 	}
 	
 	//initalisiert das Spiel
@@ -67,7 +70,9 @@ class VERWALTUNG
 	{
 		//Tod
 		if(leben <= 0)
+		{
 			ende();
+		}
 		
 		//Start der neuen Welle
 		if(gegner.size() == 0)
@@ -120,8 +125,7 @@ class VERWALTUNG
 							a.rotationSetzen(Math.PI);
 					}
 				}
-			}
-		}
+			}		}
 		
 		//Bewegung der Geschosse
 		for (int l = 0; l < geschosse.size(); ++l)
@@ -151,6 +155,7 @@ class VERWALTUNG
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
 	void ende()
 	{
+		datenbank.setHighscore(wellennummer - 2);
 		leben = 0;
 		pauseWellen = true;
 		if(ergebnismenue.position.y > 540)
