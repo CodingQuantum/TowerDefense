@@ -32,7 +32,7 @@ class LEBENSANZEIGE
 	//setzt den dargestellten Wert der Lebensanzeige
 	void anzeigeSetzen(double lebenProzent)
 	{
-		double breite = lebenProzent * 80;
+		double breite = lebenProzent * groesse.x;
 		balkenGruen.setSize((int) breite, groesse.y);
 	}
 	
