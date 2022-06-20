@@ -3,12 +3,13 @@ import java.io.*;
 class DATENBANK 
 {
 	int highscore;
+	SPIELSTAND Spielstand;
 	File file;
 	
 	DATENBANK(File Dateiname)
 	{
 		file = Dateiname;
-		try 
+		try //Highscore einlesen
 		{
 			FileReader reader = new FileReader(file.toString());
 			BufferedReader bufReader = new BufferedReader(reader);
@@ -39,6 +40,8 @@ class DATENBANK
 			e.printStackTrace();
 			highscore = 0;
 		}
+		
+		// TODO Auslesen des Spielstandes, falls vorhanden
 
 	}
 	
@@ -62,4 +65,10 @@ class DATENBANK
 		}
 	}
 	//Ergänzen Methode, die Highscore einer bestimmter Karte zurückgibt
+	
+	void saveGamestate(VERWALTUNG Verwaltung)//Referenz auf Verwaltung; muss angepasst werden
+	{
+		//Abspeichern der Daten in der Datei
+	}
+	
 }
