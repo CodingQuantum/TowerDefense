@@ -9,7 +9,7 @@ class VERWALTUNG
 {
 	Timer timer;
 	KARTE karte;
-	DATENBANK  datenbank;
+	//DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
 	ERGEBNISMENUE ergebnismenue;
 	Vector <ANGRIFFSTURM> angriffstuerme;
@@ -35,7 +35,7 @@ class VERWALTUNG
 		preisliste = new int [] {0, 10};
 		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
 		File Data = new File("./Data");
-		datenbank = new DATENBANK(Data);
+		//datenbank = new DATENBANK(Data);
 	}
 	
 	//initalisiert das Spiel
@@ -155,7 +155,7 @@ class VERWALTUNG
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
 	void ende()
 	{
-		datenbank.setHighscore(wellennummer - 2);
+		//datenbank.setHighscore(wellennummer - 2);
 		leben = 0;
 		pauseWellen = true;
 		if(ergebnismenue.position.y > 540)
