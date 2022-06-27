@@ -18,7 +18,7 @@ class STATISTIKEN
 		/*switch(index)
 		{
 			case 0:
-				int[] daten = datenbank.irgendwas;
+				int[] daten = datenbank.irgendwas;		//irgendwas macht das Spiel kaputt :(
 				namen = new String [] {"Höchste Welle", "Meistes Geld", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
 				break;
 		}*/
