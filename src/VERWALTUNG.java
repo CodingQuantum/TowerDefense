@@ -103,10 +103,6 @@ class VERWALTUNG
 		{
 			ANGRIFFSTURM a = angriffstuerme.get(j);
 			a.prozess();
-			if(a.ziel.leben <= 0)
-			{
-				a.ziel = gegnerFinden(a, gegner.size() - 1);
-			}
 			if(a.angriffsbereit)
 			{
 				GEGNER z = gegnerFinden(a, gegner.size() - 1);
