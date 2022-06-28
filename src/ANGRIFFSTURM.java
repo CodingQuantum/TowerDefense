@@ -43,7 +43,10 @@ class ANGRIFFSTURM extends TURM
     	{
     		VEKTOR delta = ziel.position.plus(position.mal(-1));
     		if(delta.laenge() <= reichweite)
+    		{
+    			double rotationAlt = rotation;
     			rotationSetzen(Math.atan2(delta.y, delta.x) + Math.PI / 2);
+    		}
     	}
     }
 }
