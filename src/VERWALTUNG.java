@@ -103,29 +103,22 @@ class VERWALTUNG
 		{
 			ANGRIFFSTURM a = angriffstuerme.get(j);
 			a.prozess();
+			if(a.ziel.leben <= 0)
+			{
+				a.ziel = gegnerFinden(a, gegner.size() - 1);
+			}
 			if(a.angriffsbereit)
 			{
 				GEGNER z = gegnerFinden(a, gegner.size() - 1);
 				if(z != null)
 				{
+					a.ziel = z;
 					a.angriffsbereit = false;
 					a.zaehler = 0;
 					geschosse.add(new GESCHOSS(a.position, z, a.geschossdaten));
-					VEKTOR delta = z.position.plus(a.position.mal(-1));
-					if(delta.x != 0)
-					{
-						a.rotationSetzen(Math.atan((double) delta.y / delta.x) + Math.PI / 2);
-						if(delta.x < 0)
-							a.rotationSetzen(a.rotation + Math.PI);
-					}
-					else
-					{
-						a.rotationSetzen(0);
-						if(delta.y > 0)
-							a.rotationSetzen(Math.PI);
-					}
 				}
-			}		}
+			}
+		}
 		
 		//Bewegung der Geschosse
 		for (int l = 0; l < geschosse.size(); ++l)

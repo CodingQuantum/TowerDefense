@@ -15,13 +15,13 @@ class STATISTIKEN
 		int[] daten = new int [] {836737, 311205, 8964, 43926, 519624};
 		String[] namen = new String[0];
 		
-		/*switch(index)
+		switch(index)
 		{
 			case 0:
-				int[] daten = datenbank.irgendwas;		//irgendwas macht das Spiel kaputt :(
+				//int[] daten = datenbank.irgendwas();
 				namen = new String [] {"Höchste Welle", "Meistes Geld", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
 				break;
-		}*/
+		}
 		
 		hintergrund = new BILD("grafiken/statistiken/hintergrund.png", position, 0, ebene);
 		werte = new TEXTFELD[5];
