@@ -131,7 +131,7 @@ class VERWALTUNG
 				g.entfernen();
 				geschosse.remove(l);
 			}
-			if(Math.abs(g.position.x) + Math.abs(g.position.y) > 3000)
+			else if(Math.abs(g.position.x) + Math.abs(g.position.y) > 3000)
 			{
 				g.entfernen();
 				geschosse.remove(l);
@@ -195,7 +195,7 @@ class VERWALTUNG
 			gegner.add(new GEGNER(karte, 0, anzahlGegner));
 		}
 		wellennummer += 1;
-		geld += welle - 1;
+		geld += welle - 1;		
 	}
 	
 	//ueberprueft auf Platz und Geld und fuegt gegebenenfalls den neuen Turm hinzu
