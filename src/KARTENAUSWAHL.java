@@ -1,7 +1,7 @@
 //Menue fuer die Auswahl der Karte
 class KARTENAUSWAHL implements UIOBJEKT
 {
-	int anzahlKarten = 1; //Variable, um einfach die Anzahl der Karten aendern zu koennen
+	int anzahlKarten = 2; //Variable, um einfach die Anzahl der Karten aendern zu koennen
 	
 	BILD hintergrund;
 	TASTER [] karten;
@@ -20,9 +20,9 @@ class KARTENAUSWAHL implements UIOBJEKT
 		karten = new TASTER[anzahlKarten];
 		for(int i = 1; i <= karten.length; ++i)
 		{
-			karten[i - 1] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(350 + 500 * (i - 1), 880), this, "karte" + i, 11);
+			karten[i - 1] = new TASTER("grafiken/kartenauswahl/karte" + i + "1.png", "grafiken/kartenauswahl/karte" + i + "2.png", "grafiken/kartenauswahl/karte" + i + "3.png", new VEKTOR(410 + 550 * (i - 1), 540), this, "karte" + i, 11);
 		}
-		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1570, 880), this, "zurueck", 11);
+		zurueck = new TASTER("grafiken/kartenauswahl/zurueck1.png", "grafiken/kartenauswahl/zurueck2.png", "grafiken/kartenauswahl/zurueck3.png", new VEKTOR(1510, 540), this, "zurueck", 11);
 		aktiv = false;
 		karteAusgewaehlt = false;
 		position = new VEKTOR(-960, 540);
@@ -37,9 +37,9 @@ class KARTENAUSWAHL implements UIOBJEKT
 		hintergrund.positionSetzen(position);
 		for (int i = 0; i < karten.length; ++i)
 		{
-			karten[i].positionSetzen(position.plus(new VEKTOR(-570 + 500 * i, 340)));
+			karten[i].positionSetzen(position.plus(new VEKTOR(-510 + 550 * i, 0)));
 		}
-		zurueck.positionSetzen(position.plus(new VEKTOR(650, 340)));
+		zurueck.positionSetzen(position.plus(new VEKTOR(590, 0)));
 	}
 	
 	//wird beim Druecken eines Tasters ausgefuehrt
