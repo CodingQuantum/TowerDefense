@@ -17,8 +17,10 @@ class VERWALTUNG
 	Vector <GEGNER> gegner;
 	Vector <GESCHOSS> geschosse;
 	int geld;
+	int geldGesamt;
 	int leben;
 	int wellennummer;
+	int gegnerGetoetet;
 	int[] preisliste;
 	boolean pauseWellen;
 	
@@ -56,8 +58,10 @@ class VERWALTUNG
 		karte.karteSetzen(kartenId);
 	    timer.start();
 	    geld = 20;
+	    geldGesamt = geld;
 	    leben = 100;
 	    wellennummer = 1;
+	    gegnerGetoetet = 0;
 	    pauseWellen = false;
 	    ergebnismenue.positionSetzen(new VEKTOR(960, 1620));
 	    ergebnismenue.x = 0;
@@ -67,13 +71,7 @@ class VERWALTUNG
 	
 	//wird ein mal pro Frame aufgerufen
 	void prozess()
-	{
-		//Tod
-		if(leben <= 0)
-		{
-			ende();
-		}
-		
+	{	
 		//Start der neuen Welle
 		if(gegner.size() == 0)
 			if(!pauseWellen)
@@ -93,6 +91,8 @@ class VERWALTUNG
 			else if(g.leben <= 0)
 			{
 				geld += g.belohnung;
+				geldGesamt += g.belohnung;
+				gegnerGetoetet += 1;
 				g.entfernen();
 				gegner.remove(i);
 			}
@@ -134,6 +134,12 @@ class VERWALTUNG
 			}
 		}
 		
+		//Tod
+		if(leben <= 0)
+		{
+			ende();
+		}
+		
 		//Aktualisierung der Oberflaeche
 		oberflaeche.prozess();
 		oberflaeche.geld.textSetzen(geld);
@@ -147,6 +153,9 @@ class VERWALTUNG
 		//datenbank.setHighscore(wellennummer - 2);
 		leben = 0;
 		pauseWellen = true;
+		ergebnismenue.welle.textSetzen("Du hast Welle " + (wellennummer - 1) + " erreicht.");
+		ergebnismenue.geldGesamt.textSetzen("Insgesamt hast Du " + geldGesamt + " Münzen verdient.");
+		ergebnismenue.gegnerGetoetet.textSetzen(gegnerGetoetet + " Gegner wurden getötet.");
 		if(ergebnismenue.position.y > 540)
 		{
 			ergebnismenue.positionSetzen(new VEKTOR(960, (int) (-540 * Math.sin(ergebnismenue.x - Math.PI / 2) + 1080)));
@@ -191,7 +200,8 @@ class VERWALTUNG
 			gegner.add(new GEGNER(karte, 0, anzahlGegner));
 		}
 		wellennummer += 1;
-		geld += welle - 1;		
+		geld += welle - 1;
+		geldGesamt += welle - 1;
 	}
 	
 	//ueberprueft auf Platz und Geld und fuegt gegebenenfalls den neuen Turm hinzu
