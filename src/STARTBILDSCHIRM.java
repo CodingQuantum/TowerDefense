@@ -14,9 +14,9 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	STARTBILDSCHIRM()
 	{
 		hintergrund = new BILD("grafiken/startmenue/hintergrund.png", new VEKTOR(920, 540), 0, 12);
-		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(960, 700), this, "start", 13);
-		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(960, 900), this, "schliessen", 13);
-		statistiken = new STATISTIKEN(0, null, new VEKTOR(1600, 270), 13);
+		start = new TASTER("grafiken/startmenue/start1.png", "grafiken/startmenue/start2.png", "grafiken/startmenue/start3.png", new VEKTOR(360, 650), this, "start", 13);
+		schliessen = new TASTER("grafiken/startmenue/schliessen1.png", "grafiken/startmenue/schliessen2.png", "grafiken/startmenue/schliessen3.png", new VEKTOR(360, 880), this, "schliessen", 13);
+		statistiken = new STATISTIKEN(0, null, new VEKTOR(1510, 730), 13);
 		aktiv = true;
 		position = new VEKTOR(920, 540);
 		x = 0;
@@ -27,9 +27,9 @@ class STARTBILDSCHIRM implements UIOBJEKT
 	{
 		this.position = position;
 		hintergrund.positionSetzen(position);
-		start.positionSetzen(position.plus(new VEKTOR(40, 160)));
-		schliessen.positionSetzen(position.plus(new VEKTOR(40, 360)));
-		statistiken.positionSetzen(position.plus(new VEKTOR(680, -270)));
+		start.positionSetzen(position.plus(new VEKTOR(-560, 110)));
+		schliessen.positionSetzen(position.plus(new VEKTOR(-560, 340)));
+		statistiken.positionSetzen(position.plus(new VEKTOR(590, 190)));
 	}
 	
 	//fuehrt Aktionen beim Druecken der Taster aus
