@@ -34,7 +34,7 @@ class VERWALTUNG
         gegner = new Vector<>();
         geschosse = new Vector<>();
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		preisliste = new int [] {0, 10, 20, 20};
+		preisliste = new int [] {0, 20, 50, 100, 100};
 		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
 		File Data = new File("./Data");
 		//datenbank = new DATENBANK(Data);
@@ -57,7 +57,7 @@ class VERWALTUNG
 		geschosse.removeAllElements();
 		karte.karteSetzen(kartenId);
 	    timer.start();
-	    geld = 20;
+	    geld = 200;
 	    geldGesamt = geld;
 	    leben = 100;
 	    wellennummer = 1;
@@ -211,6 +211,8 @@ class VERWALTUNG
 		{
 			if (id < 4)
 				angriffstuerme.add(new ANGRIFFSTURM(id, position));
+			else
+				unterstuetzungstuerme.add(new UNTERSTUETZUNGSTURM(id, position));
 			geld -= preisliste[id];
 			oberflaeche.turmvorschau(id);
 			karte.matrix[position.x / 60][position.y / 60] = false;

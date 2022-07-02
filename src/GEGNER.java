@@ -22,13 +22,25 @@ class GEGNER
     	switch(gegnerId)
         {
         	case 0:
-        		lebenMaximal = 100;
-        		leben = lebenMaximal;
+        		lebenMaximal = 200;
                 geschwindigkeit = 5;
-                schaden = 100;
+                schaden = 20;
                 belohnung = 10;
         		break;
+        	case 1:
+        		lebenMaximal = 100;
+                geschwindigkeit = 10;
+                schaden = 10;
+                belohnung = 20;
+        		break;
+        	case 2:
+        		lebenMaximal = 800;
+                geschwindigkeit = 3;
+                schaden = 100;
+                belohnung = 30;
+        		break;
         }
+    	leben = lebenMaximal;
     	position = karte.wegpunkt(0).plus(new VEKTOR(0, -nummer * 120));
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
