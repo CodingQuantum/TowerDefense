@@ -21,7 +21,7 @@ class ANGRIFFSTURM extends TURM
     		case 1:
     			abklingzeit = 50;
     	        reichweite = 240;
-    	        geschwindigkeit = 30;
+    	        geschwindigkeit = 60;
     	        schaden = 50;
     	        break;
     		case 2:

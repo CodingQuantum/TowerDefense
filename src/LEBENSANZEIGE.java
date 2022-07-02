@@ -20,8 +20,7 @@ class LEBENSANZEIGE
 		FENSTER.paneGeben().add(balkenGruen, new Integer(ebene));
 		FENSTER.paneGeben().add(balkenRot, new Integer(ebene));
 		positionSetzen(positionGegner);
-		balkenGruen.setVisible(false);
-		balkenRot.setVisible(false);
+		sichtbarkeitSetzen(false);
 	}
 	
 	//setzt die Position der Lebensanzeige auf Basis der angegbenen Position des Gegners
@@ -36,6 +35,13 @@ class LEBENSANZEIGE
 	{
 		double breite = lebenProzent * groesse.x;
 		balkenGruen.setSize((int) breite, groesse.y);
+	}
+	
+	//setzt die Sichtbarkeit der Lebensanzeige
+	void sichtbarkeitSetzen(boolean sichtbar)
+	{
+		balkenGruen.setVisible(sichtbar);
+		balkenRot.setVisible(sichtbar);
 	}
 	
 	//entfernt die Lebensanzeige

@@ -92,6 +92,8 @@ class GEGNER
     	bild.positionSetzen(position);
     	lebensanzeige.positionSetzen(position);
     	lebensanzeige.anzeigeSetzen((double) leben / (double) lebenMaximal);
+    	if(leben < lebenMaximal)
+    		lebensanzeige.sichtbarkeitSetzen(true);
     }
     
     //entfernt den Gegner
