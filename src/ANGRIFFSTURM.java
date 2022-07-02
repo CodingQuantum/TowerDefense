@@ -5,7 +5,6 @@ class ANGRIFFSTURM extends TURM
     int reichweite;
     int geschwindigkeit;
     int schaden;
-    int effekt;
     int[] geschossdaten;
     
     boolean angriffsbereit;
@@ -23,7 +22,6 @@ class ANGRIFFSTURM extends TURM
     	        reichweite = 240;
     	        geschwindigkeit = 30;
     	        schaden = 50;
-    	        
     	        break;
     		case 2:
     			abklingzeit = 5;
@@ -46,6 +44,7 @@ class ANGRIFFSTURM extends TURM
     //wird ein mal pro Frame aufgerufen
     void prozess()
     {
+    	System.out.println(reichweite);
     	zaehler += 1;
     	if(zaehler >= abklingzeit)
     	{
@@ -62,5 +61,12 @@ class ANGRIFFSTURM extends TURM
     			rotationSetzen(Math.atan2(delta.y, delta.x) + Math.PI / 2);
     		}
     	}
+    }
+    
+    void wirdUnterstuezt(double[] werte)
+    {
+    	abklingzeit *= werte[0];
+    	reichweite *= werte[1];
+    	schaden *= werte[2];
     }
 }

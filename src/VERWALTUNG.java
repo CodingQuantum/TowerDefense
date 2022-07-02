@@ -210,9 +210,27 @@ class VERWALTUNG
 		if (karte.stelleFrei(position) && geld >= preisliste[id])
 		{
 			if (id < 4)
-				angriffstuerme.add(new ANGRIFFSTURM(id, position));
+			{
+				ANGRIFFSTURM a = new ANGRIFFSTURM(id, position);
+				angriffstuerme.add(a);
+				for(int i = 0; i < unterstuetzungstuerme.size(); ++i)
+				{
+					UNTERSTUETZUNGSTURM u = unterstuetzungstuerme.get(i);
+					if(u.position.abstand(a.position) <= u.reichweite + 1)
+						a.wirdUnterstuezt(u.werte);
+				}
+			}
 			else
-				unterstuetzungstuerme.add(new UNTERSTUETZUNGSTURM(id, position));
+			{
+				UNTERSTUETZUNGSTURM u = new UNTERSTUETZUNGSTURM(id, position);
+				unterstuetzungstuerme.add(u);
+				for(int i = 0; i < angriffstuerme.size(); ++i)
+				{
+					ANGRIFFSTURM a = angriffstuerme.get(i);
+					if(u.position.abstand(a.position) <= u.reichweite + 1)
+						a.wirdUnterstuezt(u.werte);
+				}
+			}
 			geld -= preisliste[id];
 			oberflaeche.turmvorschau(id);
 			karte.matrix[position.x / 60][position.y / 60] = false;
