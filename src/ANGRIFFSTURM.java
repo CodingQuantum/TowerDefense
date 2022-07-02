@@ -10,6 +10,7 @@ class ANGRIFFSTURM extends TURM
     boolean angriffsbereit;
     int zaehler;
     GEGNER ziel;
+    int anzahlUnterstuetzung;
     
     //erzeugt den Turm
     ANGRIFFSTURM(int turmId, VEKTOR position)
@@ -39,6 +40,7 @@ class ANGRIFFSTURM extends TURM
     	geschossdaten = new int [] {turmId, geschwindigkeit, schaden};
     	angriffsbereit = true;
     	zaehler = 0;
+    	anzahlUnterstuetzung = 0;
     }
     
     //wird ein mal pro Frame aufgerufen
@@ -64,8 +66,12 @@ class ANGRIFFSTURM extends TURM
     
     void wirdUnterstuezt(double[] werte)
     {
-    	abklingzeit *= werte[0];
-    	reichweite *= werte[1];
-    	schaden *= werte[2];
+    	if(anzahlUnterstuetzung < 3)
+    	{
+	    	abklingzeit *= werte[0];
+	    	reichweite *= werte[1];
+	    	schaden *= werte[2];
+	    	anzahlUnterstuetzung += 1;
+    	}
     }
 }
