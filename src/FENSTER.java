@@ -16,7 +16,6 @@ class FENSTER
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setUndecorated(true);
 		frame.setResizable(false);
-		frame.setVisible(true);
 		frame.setIconImage(new ImageIcon(getClass().getResource("grafiken/icon.png")).getImage());
 		pane = frame.getLayeredPane();
 	}
@@ -46,5 +45,6 @@ class FENSTER
 		System.setProperty("sun.java2d.uiScale", "1.0");
 		new FENSTER();
 		new MENUE();
+		FENSTER.frame.setVisible(true);
 	}
 }

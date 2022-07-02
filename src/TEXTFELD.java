@@ -18,7 +18,7 @@ class TEXTFELD
 	TEXTFELD(String text, VEKTOR position, int schriftgroesse, int ebene)
 	{
 		label = new JLabel();
-		label.setForeground(new Color(0, 0, 0));
+		label.setForeground(new Color(255, 255, 255));
 		this.schriftgroesse = schriftgroesse;
 		textSetzen(text);
 		positionSetzen(position);

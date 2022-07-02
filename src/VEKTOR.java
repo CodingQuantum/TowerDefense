@@ -29,7 +29,13 @@ class VEKTOR
 		return Math.sqrt((x - v.x) * (x - v.x) + (y - v.y) * (y - v.y));
 	}
 	
-	//gibt den Vektor aus
+	//Laenge des Vektors
+	double laenge()
+	{
+		return Math.sqrt(x * x + y * y);
+	}
+	
+	//gibt den Vektor (schriftlich) aus
 	void ausgeben()
 	{
 		System.out.println("(" + x + ", " + y + ")");

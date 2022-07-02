@@ -9,6 +9,7 @@ class ANGRIFFSTURM extends TURM
     
     boolean angriffsbereit;
     int zaehler;
+    GEGNER ziel;
     
     //erzeugt den Turm
     ANGRIFFSTURM(int turmId, VEKTOR position)
@@ -36,6 +37,16 @@ class ANGRIFFSTURM extends TURM
     	{
     		angriffsbereit = true;
     		zaehler = 0;
+    	}
+    	
+    	if(ziel != null)
+    	{
+    		VEKTOR delta = ziel.position.plus(position.mal(-1));
+    		if(delta.laenge() <= reichweite)
+    		{
+    			double rotationAlt = rotation;
+    			rotationSetzen(Math.atan2(delta.y, delta.x) + Math.PI / 2);
+    		}
     	}
     }
 }
