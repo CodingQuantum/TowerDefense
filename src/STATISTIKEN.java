@@ -19,7 +19,7 @@ class STATISTIKEN
 		{
 			case 0:
 				//int[] daten = datenbank.irgendwas();
-				namen = new String [] {"Höchste Welle", "Meistes Geld", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
+				namen = new String [] {"Höchste Welle", "Höchster Geldstand", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
 				break;
 		}
 		

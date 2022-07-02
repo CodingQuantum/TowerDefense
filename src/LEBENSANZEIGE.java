@@ -20,6 +20,8 @@ class LEBENSANZEIGE
 		FENSTER.paneGeben().add(balkenGruen, new Integer(ebene));
 		FENSTER.paneGeben().add(balkenRot, new Integer(ebene));
 		positionSetzen(positionGegner);
+		balkenGruen.setVisible(false);
+		balkenRot.setVisible(false);
 	}
 	
 	//setzt die Position der Lebensanzeige auf Basis der angegbenen Position des Gegners

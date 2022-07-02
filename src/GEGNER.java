@@ -17,7 +17,7 @@ class GEGNER
     int wegpunktNummer;
     
     //erzeugt den Gegner (am ersten Wegpunkt)
-    GEGNER(KARTE karte, int gegnerId, int nummer)
+    GEGNER(KARTE karte, int gegnerId, int nummer, int welle)
     {
     	switch(gegnerId)
         {
@@ -41,7 +41,7 @@ class GEGNER
         		break;
         }
     	leben = lebenMaximal;
-    	position = karte.wegpunkt(0).plus(new VEKTOR(0, -nummer * 120));
+    	position = karte.wegpunkt(0).plus(new VEKTOR(0, (-nummer * 24 * geschwindigkeit) /  welle));
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
         bild = new BILD("grafiken/gegner/gegner" + gegnerId + ".png", position, rotation, 2);

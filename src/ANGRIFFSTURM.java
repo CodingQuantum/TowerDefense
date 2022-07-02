@@ -44,7 +44,6 @@ class ANGRIFFSTURM extends TURM
     //wird ein mal pro Frame aufgerufen
     void prozess()
     {
-    	System.out.println(reichweite);
     	zaehler += 1;
     	if(zaehler >= abklingzeit)
     	{
