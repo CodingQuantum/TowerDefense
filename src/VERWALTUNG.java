@@ -34,7 +34,7 @@ class VERWALTUNG
         gegner = new Vector<>();
         geschosse = new Vector<>();
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		preisliste = new int [] {0, 10};
+		preisliste = new int [] {0, 10, 20, 20};
 		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
 		File Data = new File("./Data");
 		//datenbank = new DATENBANK(Data);
@@ -209,7 +209,7 @@ class VERWALTUNG
 	{
 		if (karte.stelleFrei(position) && geld >= preisliste[id])
 		{
-			if (id < 2)
+			if (id < 4)
 				angriffstuerme.add(new ANGRIFFSTURM(id, position));
 			geld -= preisliste[id];
 			oberflaeche.turmvorschau(id);

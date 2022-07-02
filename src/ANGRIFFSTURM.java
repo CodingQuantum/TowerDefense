@@ -19,13 +19,26 @@ class ANGRIFFSTURM extends TURM
     	switch(turmId)
     	{
     		case 1:
-    			abklingzeit = 40;
+    			abklingzeit = 50;
     	        reichweite = 240;
     	        geschwindigkeit = 30;
-    	        schaden = 20;
-    	        geschossdaten = new int [] {turmId, geschwindigkeit, schaden};
+    	        schaden = 50;
+    	        
+    	        break;
+    		case 2:
+    			abklingzeit = 5;
+    	        reichweite = 120;
+    	        geschwindigkeit = 30;
+    	        schaden = 15;
+    	        break;
+    		case 3:
+    			abklingzeit = 100;
+    	        reichweite = 480;
+    	        geschwindigkeit = 120;
+    	        schaden = 300;
     	        break;
     	}
+    	geschossdaten = new int [] {turmId, geschwindigkeit, schaden};
     	angriffsbereit = true;
     	zaehler = 0;
     }

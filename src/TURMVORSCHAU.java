@@ -14,6 +14,6 @@ class TURMVORSCHAU extends TASTER
 	void turmAendern(int turmId)
 	{
 		this.turmId = turmId;
-		bilderAendern("grafiken/turmvorschau/turm" + turmId + ".png", "grafiken/turmvorschau/turm" + turmId + ".png", "grafiken/turmvorschau/turm" + turmId + "3.png");
+		bilderAendern("grafiken/turmvorschau/turm" + turmId + ".png", "grafiken/turmvorschau/turm" + turmId + ".png", "grafiken/empty.png");
 	}
 }

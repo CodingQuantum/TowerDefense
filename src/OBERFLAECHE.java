@@ -22,10 +22,10 @@ class OBERFLAECHE implements UIOBJEKT
 		geld = new TEXTFELD("", new VEKTOR(100, 50), 50, 4);
 		leben = new TEXTFELD("", new VEKTOR(100, 120), 50, 4);
 		welle = new TEXTFELD("", new VEKTOR(100, 190), 50, 4);
-		tuerme = new TASTER[2];
+		tuerme = new TASTER[3];
 		for(int i = 0; i < tuerme.length; i++)
 		{
-			tuerme[i] = new TASTER("grafiken/oberflaeche/turmSchalter" + i + "1.png", "grafiken/oberflaeche/turmSchalter" + i + "2.png", "grafiken/oberflaeche/turmSchalter" + i + "3.png", new VEKTOR(1775, 145 + 220 * i), this, "turmSchalter" + (i + 1), 5);
+			tuerme[i] = new TASTER("grafiken/oberflaeche/turmSchalter" + (i + 1) + "1.png", "grafiken/oberflaeche/turmSchalter" + (i + 1) + "2.png", "grafiken/oberflaeche/turmSchalter" + (i + 1) + "3.png", new VEKTOR(1775, 145 + 220 * i), this, "turmSchalter" + (i + 1), 5);
 		}
 		pause = new SCHALTER("grafiken/oberflaeche/pause1.png", "grafiken/oberflaeche/pause2.png", "grafiken/oberflaeche/pause3.png", new VEKTOR(1520, 100), this, "pause", 6);
 		schliessen = new TASTER("grafiken/oberflaeche/schliessen1.png", "grafiken/oberflaeche/schliessen2.png", "grafiken/oberflaeche/schliessen3.png", new VEKTOR(1370, 100), this, "schliessen", 6);
@@ -79,6 +79,9 @@ class OBERFLAECHE implements UIOBJEKT
 						break;
 					case "turmSchalter2":
 						turmvorschau(2);
+						break;
+					case "turmSchalter3":
+						turmvorschau(3);
 						break;
 					case "vorschau":
 						verwaltung.bauen(vorschau.turmId, vorschau.position);
