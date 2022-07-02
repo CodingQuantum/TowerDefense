@@ -29,7 +29,6 @@ class GEGNER
                 belohnung = 10;
         		break;
         }
-    	
     	position = karte.wegpunkt(0).plus(new VEKTOR(0, -nummer * 120));
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
@@ -42,7 +41,7 @@ class GEGNER
     
     //wird einmal pro Frame aufgerufen
     void prozess()
-    {	
+    {
     	VEKTOR zuWegpunkt = wegpunkt.plus(position.mal(-1));
     	if(Math.abs(zuWegpunkt.x) + Math.abs(zuWegpunkt.y) < geschwindigkeit)
     	{

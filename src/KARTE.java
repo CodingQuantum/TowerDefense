@@ -9,6 +9,7 @@ class KARTE
 	VEKTOR[] wegpunkte;
 	
 	String wegpunkteKarte1 = "5,-1/5,5/13,5/13,9/3,9/3,15/19,15/19,4/24,4/24,10/28,10";
+	String wegpunkteKarte2 = "6,-1/6,7/20,7/20,19";
 	
 	//erzeugt die Karte
 	KARTE()
@@ -56,6 +57,9 @@ class KARTE
 		{
 			case 1:
 				karte = wegpunkteKarte1;
+				break;
+			case 2:
+				karte = wegpunkteKarte2;
 				break;
 		}
 		String[] vektoren = karte.split("/");

@@ -57,6 +57,12 @@ class KARTENAUSWAHL implements UIOBJEKT
 					karteAusgewaehlt = true;
 					x = 0;
 					verwaltung.start(1);
+					break;
+				case "karte2":
+					karteAusgewaehlt = true;
+					x = 0;
+					verwaltung.start(2);
+					break;
 			}
 		}
 	}

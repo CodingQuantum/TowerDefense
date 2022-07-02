@@ -5,6 +5,7 @@ class ANGRIFFSTURM extends TURM
     int reichweite;
     int geschwindigkeit;
     int schaden;
+    int effekt;
     int[] geschossdaten;
     
     boolean angriffsbereit;

@@ -20,7 +20,11 @@ class VEKTOR
 	//Skalarmultiplikation
 	VEKTOR mal(int r)
 	{
-		return new VEKTOR(x * r, y* r);
+		return new VEKTOR(x * r, y * r);
+	}
+	VEKTOR mal(double r)
+	{
+		return new VEKTOR((int) (x * r), (int) (y * r));
 	}
 	
 	//Abstand der Spitzen der Orstverktoren von this und v
