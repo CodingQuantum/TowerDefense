@@ -41,7 +41,7 @@ class GEGNER
         		break;
         }
     	leben = lebenMaximal;
-    	position = karte.wegpunkt(0).plus(new VEKTOR(0, (-nummer * 24 * geschwindigkeit) /  welle));
+    	position = karte.wegpunkt(0).plus(new VEKTOR(0, ((-nummer * 24 * geschwindigkeit) /  welle) + 1));
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
         bild = new BILD("grafiken/gegner/gegner" + gegnerId + ".png", position, rotation, 2);

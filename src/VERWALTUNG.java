@@ -197,12 +197,12 @@ class VERWALTUNG
 		int anzahlGegner0 = (int) Math.pow(2, welle);
 		int anzahlGegner1 = (int) Math.pow(2, welle - 3);
 		int anzahlGegner2 = (int) Math.pow(2, welle - 6);
-		for(int a = anzahlGegner2; a > 0; --a) //Reihenfolge wichtig, da langsamer Gegner
-			gegner.add(new GEGNER(karte, 2, a + anzahlGegner0 + anzahlGegner1, welle));
-		for(int b = anzahlGegner0; b > 0; --b)
-			gegner.add(new GEGNER(karte, 0, b + anzahlGegner1, welle));
-		for(int c = anzahlGegner1; c > 0; --c)
-			gegner.add(new GEGNER(karte, 1, c, welle));
+		for(int c = 0; c < anzahlGegner1; ++c) //Reihenfolge wichtig, da schneller Gegner
+			gegner.add(0, new GEGNER(karte, 1, c, welle));
+		for(int b = 0; b < anzahlGegner0; ++b)
+			gegner.add(0, new GEGNER(karte, 0, b + anzahlGegner1, welle));
+		for(int a = 0; a < anzahlGegner2; ++a)
+			gegner.add(0, new GEGNER(karte, 2, a + anzahlGegner0 + anzahlGegner1, welle));
 		wellennummer += 1;
 		geld += welle - 1;
 		geldGesamt += welle - 1;
