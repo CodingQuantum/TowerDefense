@@ -4,7 +4,7 @@ import java.util.Vector;
 class DATENBANK 
 {
 	int [] statistiken; //hoechste Welle Huegel, hoechste Welle Wueste, getoetete Gegner, platzierte Tuerme, geschossene Geschosse
-	int [][] allgemein; //Geld gesamt, Leben, Welle, getoetete Gegner (in dieser Runde)
+	int [][] allgemein; //Geld, Geld gesamt, Leben, Welle, getoetete Gegner (in dieser Runde)
 	int [][] tuermeKarte1;
 	int [][] tuermeKarte2;
 	
@@ -12,7 +12,6 @@ class DATENBANK
 	{
 		statistiken = statistikenAuslesen();
 		spielstandLaden();
-		System.out.println(tuermeKarte1[0][1]);
 	}
 	
 	int [] statistikenAuslesen()
@@ -63,7 +62,7 @@ class DATENBANK
 	
 	void spielstandLaden()
 	{
-		allgemein = new int [2][4];
+		allgemein = new int [2][5];
 		try
         {
             FileReader fileReader = new FileReader("src/daten/karte1/allgemein.txt");
@@ -74,37 +73,64 @@ class DATENBANK
             	{
             		allgemein[0][i] = Integer.parseInt(bufferedReader.readLine());
             	}
-            	catch(NumberFormatException ex)
+            	catch(NumberFormatException ex) //Führt dazu, dass das Spiel einmal neu gestartet werden muss, dass es aber danach funktioniert
             	{
             		allgemein[0][i] = 0;
             	}
             }
             bufferedReader.close();
             
-            fileReader = new FileReader("src/daten/karte1/allgemein.txt");
+            fileReader = new FileReader("src/daten/karte2/allgemein.txt");
             bufferedReader = new BufferedReader(fileReader);
             for (int i = 0; i < allgemein[0].length; ++i)
             {
             	try
             	{
-            		allgemein[0][i] = Integer.parseInt(bufferedReader.readLine());
+            		allgemein[1][i] = Integer.parseInt(bufferedReader.readLine());
             	}
             	catch(NumberFormatException ex)
             	{
-            		allgemein[0][i] = 0;
+            		allgemein[1][i] = 0;
             	}
             }
             bufferedReader.close();
             
             fileReader = new FileReader("src/daten/karte1/tuerme.txt");
             bufferedReader = new BufferedReader(fileReader);
-            int tuermeAnzahl = Integer.parseInt(bufferedReader.readLine());
+            int tuermeAnzahl;
+            try
+            {
+            	 tuermeAnzahl = Integer.parseInt(bufferedReader.readLine());
+            }
+            catch(NumberFormatException ex)
+            {
+            	tuermeAnzahl = 0;
+            }
             tuermeKarte1 = new int[tuermeAnzahl][3];
             for (int j = 0; j < tuermeAnzahl; ++j)
             {
             	String [] werte = bufferedReader.readLine().split(" ");
             	for (int i = 0; i < werte.length; ++i)
             		tuermeKarte1[j][i] = Integer.parseInt(werte[i]);
+            }
+            bufferedReader.close();
+            
+            fileReader = new FileReader("src/daten/karte2/tuerme.txt");
+            bufferedReader = new BufferedReader(fileReader);
+            try
+            {
+            	tuermeAnzahl = Integer.parseInt(bufferedReader.readLine());
+            }
+            catch(NumberFormatException ex)
+            {
+            	tuermeAnzahl = 0;
+            }
+            tuermeKarte2 = new int[tuermeAnzahl][3];
+            for (int j = 0; j < tuermeAnzahl; ++j)
+            {
+            	String [] werte = bufferedReader.readLine().split(" ");
+            	for (int i = 0; i < werte.length; ++i)
+            		tuermeKarte2[j][i] = Integer.parseInt(werte[i]);
             }
             bufferedReader.close();
         }

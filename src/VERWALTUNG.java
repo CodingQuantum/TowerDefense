@@ -2,7 +2,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.*;
-import java.io.*;
 
 //zentrale Verwaltungsklasse des eigentlichen Spiels
 class VERWALTUNG
@@ -42,6 +41,7 @@ class VERWALTUNG
 	//initalisiert das Spiel
 	void start(int kartenId)
 	{
+		datenbank.spielstandLaden();
 		for(int a = 0; a < angriffstuerme.size(); ++a)
 			angriffstuerme.get(a).entfernen();
 		for(int b = 0; b < unterstuetzungstuerme.size(); ++b)
@@ -56,16 +56,36 @@ class VERWALTUNG
 		geschosse.removeAllElements();
 		karte.karteSetzen(kartenId);
 	    timer.start();
-	    geld = 200;
-	    geldGesamt = geld;
-	    leben = 100;
-	    wellennummer = 1;
-	    gegnerGetoetet = 0;
+	    geld = datenbank.allgemein[kartenId - 1][0];
+	    geldGesamt = datenbank.allgemein[kartenId - 1][1];
+	    leben = datenbank.allgemein[kartenId - 1][2];
+	    wellennummer = datenbank.allgemein[kartenId - 1][3];
+	    gegnerGetoetet = datenbank.allgemein[kartenId - 1][4];
 	    pauseWellen = false;
 	    ergebnismenue.positionSetzen(new VEKTOR(960, 1620));
 	    ergebnismenue.x = 0;
 	    if(oberflaeche.pause.zustand)
 	    	oberflaeche.pause.mouseClicked(null);
+	    if(kartenId == 1)
+	    {
+	    	for(int i = 0; i < datenbank.tuermeKarte1.length; ++i)
+	    	{
+	    		bauen(datenbank.tuermeKarte1[i][0], new VEKTOR(datenbank.tuermeKarte1[i][1], datenbank.tuermeKarte1[i][2]));
+	    		geld += preisliste[datenbank.tuermeKarte1[i][0]];
+	    		oberflaeche.turmvorschau(datenbank.tuermeKarte1[i][0]);
+	    	}
+	    }
+	    else if(kartenId == 2)
+	    {
+	    	for(int i = 0; i < datenbank.tuermeKarte2.length; ++i)
+	    	{
+	    		bauen(datenbank.tuermeKarte2[i][0], new VEKTOR(datenbank.tuermeKarte2[i][1], datenbank.tuermeKarte2[i][2]));
+	    		geld += preisliste[datenbank.tuermeKarte2[i][0]];
+	    		oberflaeche.turmvorschau(datenbank.tuermeKarte2[i][0]);
+	    	}
+	    }
+	    geld -= 10 * (wellennummer - 1);
+    	geldGesamt -= 10 * (wellennummer - 1);
 	}
 	
 	//wird ein mal pro Frame aufgerufen
@@ -74,7 +94,10 @@ class VERWALTUNG
 		//Start der neuen Welle
 		if(gegner.size() == 0)
 			if(!pauseWellen)
+			{
 				welle(wellennummer);
+				spielstandSpeichern();
+			}
 		
 		//Bewegung der Gegner
 		for(int i = 0; i < gegner.size(); ++i)
@@ -255,11 +278,15 @@ class VERWALTUNG
 	//uebergibt den Spielstand an die Datenbank
 	void spielstandSpeichern()
 	{
-		int [] allgemein;
 		if(leben <= 0)
-			allgemein = new int [] {200, 100, 1, 0};
+		{
+			int [] allgemein = new int [] {200, 200, 100, 1, 0};
+			datenbank.spielstandSpeichern(karte.kartenId, allgemein, new Vector<>(), new Vector<>());
+		}
 		else
-			allgemein = new int [] {geldGesamt, leben, wellennummer, gegnerGetoetet};
-		datenbank.spielstandSpeichern(karte.kartenId, allgemein, angriffstuerme, unterstuetzungstuerme);
+		{
+			int [] allgemein = new int [] {geld, geldGesamt, leben, wellennummer - 1, gegnerGetoetet};
+			datenbank.spielstandSpeichern(karte.kartenId, allgemein, angriffstuerme, unterstuetzungstuerme);
+		}
 	}
 }
