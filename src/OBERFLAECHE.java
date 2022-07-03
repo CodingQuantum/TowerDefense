@@ -98,6 +98,8 @@ class OBERFLAECHE implements UIOBJEKT
 			}
 			if(id == "schliessen")
 			{
+				verwaltung.statistikenSpeichern();
+				verwaltung.spielstandSpeichern();
 				FENSTER.schliessen();
 			}
 		}

@@ -11,11 +11,11 @@ class ERGEBNISMENUE implements UIOBJEKT
 	TEXTFELD geldGesamt;
 	TEXTFELD gegnerGetoetet;
 	
-	KARTENAUSWAHL kartenauswahl;
+	MENUE menue;
 	double x;
 	
 	//erzeugt das Ergebnismenue
-	ERGEBNISMENUE(KARTENAUSWAHL kartenauswahl)
+	ERGEBNISMENUE()
 	{
 		position = new VEKTOR(-960, 540);
 		hintergrund = new BILD("grafiken/ergebnismenue/hintergrund.png", position, 0, 7);
@@ -23,7 +23,6 @@ class ERGEBNISMENUE implements UIOBJEKT
 		welle = new TEXTFELD("", new VEKTOR(-500, -240), 50, 8);
 		geldGesamt = new TEXTFELD("", new VEKTOR(-500, -170), 50, 8);
 		gegnerGetoetet = new TEXTFELD("", new VEKTOR(-500, -100), 50, 8);
-		this.kartenauswahl = kartenauswahl;
 		x = 0;
 	}
 	
@@ -43,9 +42,10 @@ class ERGEBNISMENUE implements UIOBJEKT
 	{
 		if(id == "ok")
 		{
-			kartenauswahl.x = 0;
-			kartenauswahl.aktiv = true;
-			kartenauswahl.karteAusgewaehlt = false;
+			menue.kartenauswahl.x = 0;
+			menue.kartenauswahl.aktiv = true;
+			menue.kartenauswahl.karteAusgewaehlt = false;
+			menue.startbildschirm.statistiken.anzeigeSetzen();
 		}
 	}
 	

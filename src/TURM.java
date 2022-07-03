@@ -5,6 +5,7 @@ class TURM
     double rotation;
     BILD bild;
     int level;
+    int turmId;
     
     //erzeugt den Turm
     TURM(int turmId, VEKTOR position)
@@ -13,6 +14,7 @@ class TURM
     	rotation = 0;
     	bild = new BILD("grafiken/turm/turm" + turmId + ".png", position, 0, 1);
     	level = 0;
+    	this.turmId = turmId;
     }
     
     //entfernt den Turm

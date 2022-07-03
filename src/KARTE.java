@@ -7,6 +7,7 @@ class KARTE
 	BILD hintergrund;
 	boolean [][] matrix;
 	VEKTOR[] wegpunkte;
+	int kartenId;
 	
 	String wegpunkteKarte1 = "5,-1/5,5/13,5/13,9/3,9/3,15/19,15/19,4/24,4/24,10/28,10";
 	String wegpunkteKarte2 = "6,-1/6,7/20,7/20,19";
@@ -21,6 +22,7 @@ class KARTE
 	//initialisiert die Karte
 	void karteSetzen(int kartenId)
 	{
+		this.kartenId = kartenId;
 		hintergrund.entfernen();
 		hintergrund = new BILD("grafiken/karten/karte" + kartenId + ".png", new VEKTOR(810, 540), 0, 0);
 		matrixErzeugen(kartenId);

@@ -9,7 +9,7 @@ class VERWALTUNG
 {
 	Timer timer;
 	KARTE karte;
-	//DATENBANK  datenbank;
+	DATENBANK  datenbank;
 	OBERFLAECHE oberflaeche;
 	ERGEBNISMENUE ergebnismenue;
 	Vector <ANGRIFFSTURM> angriffstuerme;
@@ -25,19 +25,18 @@ class VERWALTUNG
 	boolean pauseWellen;
 	
 	//erzeugt die Verwaltungsklasse
-	VERWALTUNG(KARTENAUSWAHL kartenauswahl)
+	VERWALTUNG()
 	{
 		karte = new KARTE();
+		datenbank = new DATENBANK();
 		oberflaeche = new OBERFLAECHE(this);
+		ergebnismenue = new ERGEBNISMENUE();
         angriffstuerme = new Vector<>();
         unterstuetzungstuerme = new Vector<>();
         gegner = new Vector<>();
         geschosse = new Vector<>();
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
 		preisliste = new int [] {0, 20, 50, 100, 100};
-		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
-		File Data = new File("./Data");
-		//datenbank = new DATENBANK(Data);
 	}
 	
 	//initalisiert das Spiel
@@ -95,6 +94,7 @@ class VERWALTUNG
 				gegnerGetoetet += 1;
 				g.entfernen();
 				gegner.remove(i);
+				datenbank.statistiken[2] += 1;
 			}
 		}
 		
@@ -112,6 +112,7 @@ class VERWALTUNG
 					a.angriffsbereit = false;
 					a.zaehler = 0;
 					geschosse.add(new GESCHOSS(a.position, z, a.geschossdaten));
+					datenbank.statistiken[4] += 1;
 				}
 			}
 		}
@@ -150,7 +151,7 @@ class VERWALTUNG
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
 	void ende()
 	{
-		//datenbank.setHighscore(wellennummer - 2);
+		statistikenSpeichern();
 		leben = 0;
 		pauseWellen = true;
 		ergebnismenue.welle.textSetzen("Du hast Welle " + (wellennummer - 1) + " erreicht.");
@@ -194,9 +195,9 @@ class VERWALTUNG
 	//laedt die neue Welle
 	void welle(int welle)
 	{
-		int anzahlGegner0 = (int) Math.pow(2, welle);
+		int anzahlGegner0 = (int) Math.pow(2, welle - 1);
 		int anzahlGegner1 = (int) Math.pow(2, welle - 3);
-		int anzahlGegner2 = (int) Math.pow(2, welle - 6);
+		int anzahlGegner2 = (int) Math.pow(2, welle - 5);
 		for(int c = 0; c < anzahlGegner1; ++c) //Reihenfolge wichtig, da schneller Gegner
 			gegner.add(0, new GEGNER(karte, 1, c, welle));
 		for(int b = 0; b < anzahlGegner0; ++b)
@@ -238,6 +239,22 @@ class VERWALTUNG
 			geld -= preisliste[id];
 			oberflaeche.turmvorschau(id);
 			karte.matrix[position.x / 60][position.y / 60] = false;
+			datenbank.statistiken[3] += 1;
 		}
+	}
+	
+	//uebergibt die gesammelten statistischen Daten an die Datenbank
+	void statistikenSpeichern()
+	{
+		if(wellennummer - 1 > datenbank.statistiken[karte.kartenId - 1])
+			datenbank.statistiken[karte.kartenId - 1] = wellennummer - 1;
+		datenbank.statistikenSpeichern();
+	}
+	
+	//uebergibt den Spielstand an die Datenbank
+	void spielstandSpeichern()
+	{
+		int [] allgemein = new int [] {geldGesamt, leben, wellennummer, gegnerGetoetet};
+		datenbank.spielstandSpeichern(karte.kartenId, allgemein, angriffstuerme, unterstuetzungstuerme);
 	}
 }

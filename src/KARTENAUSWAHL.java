@@ -14,7 +14,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 	VERWALTUNG verwaltung;
 	
 	//erzeugt das Auswahlmenue
-	KARTENAUSWAHL()
+	KARTENAUSWAHL(VERWALTUNG verwaltung)
 	{
 		hintergrund = new BILD("grafiken/kartenauswahl/hintergrund.png", new VEKTOR(920, 540), 0, 10);
 		karten = new TASTER[anzahlKarten];
@@ -27,7 +27,7 @@ class KARTENAUSWAHL implements UIOBJEKT
 		karteAusgewaehlt = false;
 		position = new VEKTOR(-960, 540);
 		x = Math.PI / 2;
-		verwaltung = new VERWALTUNG(this);
+		this.verwaltung = verwaltung;
 	}
 	
 	//setzt die Position

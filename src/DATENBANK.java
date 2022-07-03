@@ -1,74 +1,98 @@
 import java.io.*;
+import java.util.Vector;
 
 class DATENBANK 
 {
-	int highscore;
-	SPIELSTAND Spielstand;
-	File file;
+	int [] statistiken; //hoechste Welle Huegel, hoechste Welle Wueste, getoetete Gegner, platzierte Tuerme, geschossene Geschosse
 	
-	DATENBANK(File Dateiname)
+	int [] allgemeinHuegel; //Geld gesamt, Leben, Welle, getoetete Gegner (in dieser Runde)
+	int [][] tuermeHuegel;
+	int [] allgemeinWueste; //Geld gesamt, Leben, Welle, getoetete Gegner (in dieser Runde)
+	int [][] tuermeWueste;
+	
+	DATENBANK()
 	{
-		file = Dateiname;
-		try //Highscore einlesen
-		{
-			FileReader reader = new FileReader(file.toString());
-			BufferedReader bufReader = new BufferedReader(reader);
-			String highscoreString = bufReader.readLine();
-			bufReader.close();
-			if(highscoreString != null)
-				highscore = Integer.parseInt(highscoreString);
-		}
-		catch (FileNotFoundException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			try 
-			{
-				file.createNewFile();
-			} 
-			catch (IOException e1) 
-			{
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-                System.err.println("Error creating " + file.toString());
-			}
-			
-		} 
-		catch (IOException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			highscore = 0;
-		}
-		
-		// TODO Auslesen des Spielstandes, falls vorhanden
-
+		statistiken = statistikenAuslesen();
 	}
 	
-	void setHighscore(int welle)
+	int [] statistikenAuslesen()
 	{
-		if(highscore <= welle)
-			highscore = welle;
-		try 
-		{
-			FileWriter writer = new FileWriter(file.toString());
-			BufferedWriter bufWriter = new BufferedWriter(writer);
-			System.out.println(highscore);
-
-			bufWriter.write(65);
-			bufWriter.close();
-		} 
-		catch (IOException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		statistiken = new int[5];
+		try
+        {
+            FileReader fileReader = new FileReader("src/daten/statistiken.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            for (int i = 0; i < statistiken.length; i++)
+            {
+            	try
+            	{
+            		statistiken[i] = Integer.parseInt(bufferedReader.readLine());
+            	}
+            	catch(NumberFormatException ex)
+            	{
+            		statistiken[i] = 0;
+            	}
+            }
+            bufferedReader.close();  
+        }
+        catch(IOException ex)
+        {
+            System.out.println("Fehler");                  
+        }
+		return statistiken;
 	}
-	//Ergänzen Methode, die Highscore einer bestimmter Karte zurückgibt
 	
-	void saveGamestate(VERWALTUNG Verwaltung)//Referenz auf Verwaltung; muss angepasst werden
+	void statistikenSpeichern()
 	{
-		//Abspeichern der Daten in der Datei
+		try
+        {
+            FileWriter fileWriter = new FileWriter("src/daten/statistiken.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (int i = 0; i < statistiken.length; i++)
+            {
+                bufferedWriter.write(String.valueOf(statistiken[i]));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }
+        catch(IOException ex)
+        {
+            System.out.println("Fehler");
+        }
 	}
 	
+	void spielstandSpeichern(int kartenId, int [] allgemein, Vector <ANGRIFFSTURM> angriffstuerme, Vector <UNTERSTUETZUNGSTURM> unterstuetzungstuerme)
+	{
+		try
+        {
+            FileWriter fileWriter = new FileWriter("src/daten/karte" + kartenId + "/allgemein.txt");
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            for (int i = 0; i < allgemein.length; i++)
+            {
+                bufferedWriter.write(String.valueOf(allgemein[i]));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+            
+            fileWriter = new FileWriter("src/daten/karte" + kartenId + "/tuerme.txt");
+            bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(String.valueOf(angriffstuerme.size()) + " " + String.valueOf(unterstuetzungstuerme.size()));
+            bufferedWriter.newLine();
+            for (int i = 0; i < angriffstuerme.size(); i++)
+            {
+            	bufferedWriter.write(String.valueOf(angriffstuerme.get(i).turmId) + " " + String.valueOf(angriffstuerme.get(i).position.x) + " " + String.valueOf(angriffstuerme.get(i).position.y));
+                bufferedWriter.newLine();
+            }
+            for (int i = 0; i < unterstuetzungstuerme.size(); i++)
+            {
+                bufferedWriter.write(String.valueOf(unterstuetzungstuerme.get(i).turmId) + " " + String.valueOf(unterstuetzungstuerme.get(i).position.x) + " " + String.valueOf(unterstuetzungstuerme.get(i).position.y));
+                bufferedWriter.newLine();
+            }
+            bufferedWriter.close();
+        }
+        catch(IOException ex)
+        {
+            System.out.println("Fehler");
+        }
+	}
 }
