@@ -11,16 +11,12 @@ class STATISTIKEN
 	{
 		this.datenbank = datenbank;
 		this.position = position;
-		//TEST
-		int[] daten = new int [5];
-		String[] namen = new String[0];
 		
-		daten = datenbank.statistiken;
-		namen = new String [] {"Höchste Welle Hügel", "Höchste Welle Wüste", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
-		
+		int [] daten = datenbank.statistiken;
+		String [] namen = new String [] {"Höchste Welle Hügel", "Höchste Welle Wüste", "Getötete Gegner", "Platzierte Türme", "Geschossene Geschosse"};
 		hintergrund = new BILD("grafiken/statistiken/hintergrund.png", position, 0, ebene);
-		werte = new TEXTFELD[5];
-		bezeichner = new TEXTFELD[werte.length];
+		werte = new TEXTFELD[namen.length];
+		bezeichner = new TEXTFELD[namen.length];
 		for(int i = 0; i < werte.length; ++i)
 		{
 			werte[i] = new TEXTFELD(String.valueOf(daten[i]), position.plus(new VEKTOR(100, -220 + i * 100)), 30, ebene + 1);

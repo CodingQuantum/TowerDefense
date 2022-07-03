@@ -152,6 +152,7 @@ class VERWALTUNG
 	void ende()
 	{
 		statistikenSpeichern();
+		spielstandSpeichern();
 		leben = 0;
 		pauseWellen = true;
 		ergebnismenue.welle.textSetzen("Du hast Welle " + (wellennummer - 1) + " erreicht.");
@@ -205,8 +206,8 @@ class VERWALTUNG
 		for(int a = 0; a < anzahlGegner2; ++a)
 			gegner.add(0, new GEGNER(karte, 2, a + anzahlGegner0 + anzahlGegner1, welle));
 		wellennummer += 1;
-		geld += welle - 1;
-		geldGesamt += welle - 1;
+		geld += 10 * (welle - 1);
+		geldGesamt += 10 * (welle - 1);
 	}
 	
 	//ueberprueft auf Platz und Geld und fuegt gegebenenfalls den neuen Turm hinzu
@@ -254,7 +255,11 @@ class VERWALTUNG
 	//uebergibt den Spielstand an die Datenbank
 	void spielstandSpeichern()
 	{
-		int [] allgemein = new int [] {geldGesamt, leben, wellennummer, gegnerGetoetet};
+		int [] allgemein;
+		if(leben <= 0)
+			allgemein = new int [] {200, 100, 1, 0};
+		else
+			allgemein = new int [] {geldGesamt, leben, wellennummer, gegnerGetoetet};
 		datenbank.spielstandSpeichern(karte.kartenId, allgemein, angriffstuerme, unterstuetzungstuerme);
 	}
 }
