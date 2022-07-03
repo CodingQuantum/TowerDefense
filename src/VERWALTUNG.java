@@ -70,8 +70,8 @@ class VERWALTUNG
 	    {
 	    	for(int i = 0; i < datenbank.tuermeKarte1.length; ++i)
 	    	{
-	    		bauen(datenbank.tuermeKarte1[i][0], new VEKTOR(datenbank.tuermeKarte1[i][1], datenbank.tuermeKarte1[i][2]));
 	    		geld += preisliste[datenbank.tuermeKarte1[i][0]];
+	    		bauen(datenbank.tuermeKarte1[i][0], new VEKTOR(datenbank.tuermeKarte1[i][1], datenbank.tuermeKarte1[i][2]));
 	    		oberflaeche.turmvorschau(datenbank.tuermeKarte1[i][0]);
 	    	}
 	    }
@@ -79,8 +79,8 @@ class VERWALTUNG
 	    {
 	    	for(int i = 0; i < datenbank.tuermeKarte2.length; ++i)
 	    	{
-	    		bauen(datenbank.tuermeKarte2[i][0], new VEKTOR(datenbank.tuermeKarte2[i][1], datenbank.tuermeKarte2[i][2]));
 	    		geld += preisliste[datenbank.tuermeKarte2[i][0]];
+	    		bauen(datenbank.tuermeKarte2[i][0], new VEKTOR(datenbank.tuermeKarte2[i][1], datenbank.tuermeKarte2[i][2]));
 	    		oberflaeche.turmvorschau(datenbank.tuermeKarte2[i][0]);
 	    	}
 	    }
