@@ -77,24 +77,10 @@ class OBERFLAECHE implements UIOBJEKT
 		{
 			if(pause.zustand == false)
 			{
-				switch(id)
-				{
-					case "turmSchalter1":
-						turmvorschau(1);
-						break;
-					case "turmSchalter2":
-						turmvorschau(2);
-						break;
-					case "turmSchalter3":
-						turmvorschau(3);
-						break;
-					case "turmSchalter4":
-						turmvorschau(4);
-						break;
-					case "vorschau":
-						verwaltung.bauen(vorschau.turmId, vorschau.position);
-						break;
-				}
+				if(id.lastIndexOf("turmSchalter") == 0)
+					turmvorschau(Integer.parseInt(id.substring(12)));
+				if(id == "vorschau")
+					verwaltung.bauen(vorschau.turmId, vorschau.position);
 			}
 			if(id == "schliessen")
 			{
