@@ -8,10 +8,11 @@ class MENUE
 	KARTENAUSWAHL kartenauswahl;
 	
 	//erzeugt das Menue
-	MENUE()
+	MENUE(VERWALTUNG verwaltung)
 	{
-		startbildschirm = new STARTBILDSCHIRM();
-		kartenauswahl = new KARTENAUSWAHL();
+		startbildschirm = new STARTBILDSCHIRM(verwaltung.datenbank);
+		kartenauswahl = new KARTENAUSWAHL(verwaltung);
+		verwaltung.ergebnismenue.menue = this;
 		Timer t = new Timer(20, new ActionListener() {
 			//Animation
 	        @Override

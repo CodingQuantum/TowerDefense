@@ -7,8 +7,10 @@ class KARTE
 	BILD hintergrund;
 	boolean [][] matrix;
 	VEKTOR[] wegpunkte;
+	int kartenId;
 	
 	String wegpunkteKarte1 = "5,-1/5,5/13,5/13,9/3,9/3,15/19,15/19,4/24,4/24,10/28,10";
+	String wegpunkteKarte2 = "6,-1/6,7/20,7/20,19";
 	
 	//erzeugt die Karte
 	KARTE()
@@ -20,6 +22,7 @@ class KARTE
 	//initialisiert die Karte
 	void karteSetzen(int kartenId)
 	{
+		this.kartenId = kartenId;
 		hintergrund.entfernen();
 		hintergrund = new BILD("grafiken/karten/karte" + kartenId + ".png", new VEKTOR(810, 540), 0, 0);
 		matrixErzeugen(kartenId);
@@ -31,10 +34,10 @@ class KARTE
 	{
 		ImageIcon icon = new ImageIcon(getClass().getResource("grafiken/karten/karteGitter" + kartenId + ".png"));
 		BufferedImage i = new BufferedImage(icon.getIconWidth(), icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-		i.getGraphics().drawImage(icon.getImage(), 0,0, icon.getImageObserver());
+		i.getGraphics().drawImage(icon.getImage(), 0, 0, icon.getImageObserver());
 		for(int x = 0; x < 27; ++x)
 		{
-			for(int y = 0; y < 18; y++)
+			for(int y = 0; y < 18; ++y)
 			{
 				if(i.getRGB(x, y) != 0)
 				{
@@ -56,6 +59,9 @@ class KARTE
 		{
 			case 1:
 				karte = wegpunkteKarte1;
+				break;
+			case 2:
+				karte = wegpunkteKarte2;
 				break;
 		}
 		String[] vektoren = karte.split("/");

@@ -15,23 +15,33 @@ class GEGNER
     KARTE karte;
     VEKTOR wegpunkt;
     int wegpunktNummer;
-    VERWALTUNG verwaltung;
     
     //erzeugt den Gegner (am ersten Wegpunkt)
-    GEGNER(KARTE karte, int gegnerId, int nummer, VERWALTUNG verwaltung)
+    GEGNER(KARTE karte, int gegnerId, int nummer, int welle)
     {
     	switch(gegnerId)
         {
         	case 0:
-        		lebenMaximal = 100;
-        		leben = lebenMaximal;
+        		lebenMaximal = 200;
                 geschwindigkeit = 5;
-                schaden = 100;
+                schaden = 20;
                 belohnung = 10;
         		break;
+        	case 1:
+        		lebenMaximal = 100;
+                geschwindigkeit = 10;
+                schaden = 10;
+                belohnung = 20;
+        		break;
+        	case 2:
+        		lebenMaximal = 800;
+                geschwindigkeit = 3;
+                schaden = 100;
+                belohnung = 30;
+        		break;
         }
-    	
-    	position = karte.wegpunkt(0).plus(new VEKTOR(0, -nummer * 120));
+    	leben = lebenMaximal;
+    	position = karte.wegpunkt(0).plus(new VEKTOR(0, ((-nummer * 24 * geschwindigkeit) /  welle) + 1));
         rotation = 0;
         lebensanzeige = new LEBENSANZEIGE(position, 3);
         bild = new BILD("grafiken/gegner/gegner" + gegnerId + ".png", position, rotation, 2);
@@ -39,12 +49,11 @@ class GEGNER
         this.karte = karte;
         wegpunkt = karte.wegpunkt(0);
         wegpunktNummer = 0;
-        this.verwaltung = verwaltung;
     }
     
     //wird einmal pro Frame aufgerufen
     void prozess()
-    {	
+    {
     	VEKTOR zuWegpunkt = wegpunkt.plus(position.mal(-1));
     	if(Math.abs(zuWegpunkt.x) + Math.abs(zuWegpunkt.y) < geschwindigkeit)
     	{
@@ -83,6 +92,8 @@ class GEGNER
     	bild.positionSetzen(position);
     	lebensanzeige.positionSetzen(position);
     	lebensanzeige.anzeigeSetzen((double) leben / (double) lebenMaximal);
+    	if(leben < lebenMaximal)
+    		lebensanzeige.sichtbarkeitSetzen(true);
     }
     
     //entfernt den Gegner

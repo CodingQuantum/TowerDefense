@@ -2,6 +2,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 import javax.swing.*;
+import java.io.*;
 
 //zentrale Verwaltungsklasse des eigentlichen Spiels
 class VERWALTUNG
@@ -16,23 +17,26 @@ class VERWALTUNG
 	Vector <GEGNER> gegner;
 	Vector <GESCHOSS> geschosse;
 	int geld;
+	int geldGesamt;
 	int leben;
 	int wellennummer;
+	int gegnerGetoetet;
 	int[] preisliste;
 	boolean pauseWellen;
 	
 	//erzeugt die Verwaltungsklasse
-	VERWALTUNG(KARTENAUSWAHL kartenauswahl)
+	VERWALTUNG()
 	{
 		karte = new KARTE();
+		datenbank = new DATENBANK();
 		oberflaeche = new OBERFLAECHE(this);
+		ergebnismenue = new ERGEBNISMENUE();
         angriffstuerme = new Vector<>();
         unterstuetzungstuerme = new Vector<>();
         gegner = new Vector<>();
         geschosse = new Vector<>();
         timer = new Timer(20, new ActionListener(){public void actionPerformed(ActionEvent e) {prozess();}});
-		preisliste = new int [] {0, 10};
-		ergebnismenue = new ERGEBNISMENUE(kartenauswahl);
+		preisliste = new int [] {0, 20, 50, 100, 100};
 	}
 	
 	//initalisiert das Spiel
@@ -52,9 +56,11 @@ class VERWALTUNG
 		geschosse.removeAllElements();
 		karte.karteSetzen(kartenId);
 	    timer.start();
-	    geld = 20;
+	    geld = 200;
+	    geldGesamt = geld;
 	    leben = 100;
 	    wellennummer = 1;
+	    gegnerGetoetet = 0;
 	    pauseWellen = false;
 	    ergebnismenue.positionSetzen(new VEKTOR(960, 1620));
 	    ergebnismenue.x = 0;
@@ -64,11 +70,7 @@ class VERWALTUNG
 	
 	//wird ein mal pro Frame aufgerufen
 	void prozess()
-	{
-		//Tod
-		if(leben <= 0)
-			ende();
-		
+	{	
 		//Start der neuen Welle
 		if(gegner.size() == 0)
 			if(!pauseWellen)
@@ -88,8 +90,11 @@ class VERWALTUNG
 			else if(g.leben <= 0)
 			{
 				geld += g.belohnung;
+				geldGesamt += g.belohnung;
+				gegnerGetoetet += 1;
 				g.entfernen();
 				gegner.remove(i);
+				datenbank.statistiken[2] += 1;
 			}
 		}
 		
@@ -103,22 +108,11 @@ class VERWALTUNG
 				GEGNER z = gegnerFinden(a, gegner.size() - 1);
 				if(z != null)
 				{
+					a.ziel = z;
 					a.angriffsbereit = false;
 					a.zaehler = 0;
 					geschosse.add(new GESCHOSS(a.position, z, a.geschossdaten));
-					VEKTOR delta = z.position.plus(a.position.mal(-1));
-					if(delta.x != 0)
-					{
-						a.rotationSetzen(Math.atan((double) delta.y / delta.x) + Math.PI / 2);
-						if(delta.x < 0)
-							a.rotationSetzen(a.rotation + Math.PI);
-					}
-					else
-					{
-						a.rotationSetzen(0);
-						if(delta.y > 0)
-							a.rotationSetzen(Math.PI);
-					}
+					datenbank.statistiken[4] += 1;
 				}
 			}
 		}
@@ -134,11 +128,17 @@ class VERWALTUNG
 				g.entfernen();
 				geschosse.remove(l);
 			}
-			if(Math.abs(g.position.x) + Math.abs(g.position.y) > 3000)
+			else if(Math.abs(g.position.x) + Math.abs(g.position.y) > 3000)
 			{
 				g.entfernen();
 				geschosse.remove(l);
 			}
+		}
+		
+		//Tod
+		if(leben <= 0)
+		{
+			ende();
 		}
 		
 		//Aktualisierung der Oberflaeche
@@ -151,8 +151,12 @@ class VERWALTUNG
 	//Aktion, die beim Verlieren des Spiels ausgefuehrt wird
 	void ende()
 	{
+		statistikenSpeichern();
 		leben = 0;
 		pauseWellen = true;
+		ergebnismenue.welle.textSetzen("Du hast Welle " + (wellennummer - 1) + " erreicht.");
+		ergebnismenue.geldGesamt.textSetzen("Insgesamt hast Du " + geldGesamt + " Münzen verdient.");
+		ergebnismenue.gegnerGetoetet.textSetzen(gegnerGetoetet + " Gegner wurden getötet.");
 		if(ergebnismenue.position.y > 540)
 		{
 			ergebnismenue.positionSetzen(new VEKTOR(960, (int) (-540 * Math.sin(ergebnismenue.x - Math.PI / 2) + 1080)));
@@ -188,28 +192,69 @@ class VERWALTUNG
 		}
 	}
 	
-	//laed die neue Welle
+	//laedt die neue Welle
 	void welle(int welle)
 	{
-		int anzahlGegner = welle * 2;
-		for(; anzahlGegner > 0; --anzahlGegner)
-		{
-			gegner.add(new GEGNER(karte, 0, anzahlGegner, this));
-		}
+		int anzahlGegner0 = (int) Math.pow(2, welle - 1);
+		int anzahlGegner1 = (int) Math.pow(2, welle - 3);
+		int anzahlGegner2 = (int) Math.pow(2, welle - 5);
+		for(int c = 0; c < anzahlGegner1; ++c) //Reihenfolge wichtig, da schneller Gegner
+			gegner.add(0, new GEGNER(karte, 1, c, welle));
+		for(int b = 0; b < anzahlGegner0; ++b)
+			gegner.add(0, new GEGNER(karte, 0, b + anzahlGegner1, welle));
+		for(int a = 0; a < anzahlGegner2; ++a)
+			gegner.add(0, new GEGNER(karte, 2, a + anzahlGegner0 + anzahlGegner1, welle));
 		wellennummer += 1;
 		geld += welle - 1;
+		geldGesamt += welle - 1;
 	}
 	
-	//ueberprueft auf Platz und Geld und fuegt gegbenenfalls den neuen Turm hinzu
+	//ueberprueft auf Platz und Geld und fuegt gegebenenfalls den neuen Turm hinzu
 	void bauen(int id, VEKTOR position)
 	{
 		if (karte.stelleFrei(position) && geld >= preisliste[id])
 		{
-			if (id < 2)
-				angriffstuerme.add(new ANGRIFFSTURM(id, position));
+			if (id < 4)
+			{
+				ANGRIFFSTURM a = new ANGRIFFSTURM(id, position);
+				angriffstuerme.add(a);
+				for(int i = 0; i < unterstuetzungstuerme.size(); ++i)
+				{
+					UNTERSTUETZUNGSTURM u = unterstuetzungstuerme.get(i);
+					if(u.position.abstand(a.position) <= u.reichweite + 1)
+						a.wirdUnterstuezt(u.werte);
+				}
+			}
+			else
+			{
+				UNTERSTUETZUNGSTURM u = new UNTERSTUETZUNGSTURM(id, position);
+				unterstuetzungstuerme.add(u);
+				for(int i = 0; i < angriffstuerme.size(); ++i)
+				{
+					ANGRIFFSTURM a = angriffstuerme.get(i);
+					if(u.position.abstand(a.position) <= u.reichweite + 1)
+						a.wirdUnterstuezt(u.werte);
+				}
+			}
 			geld -= preisliste[id];
 			oberflaeche.turmvorschau(id);
 			karte.matrix[position.x / 60][position.y / 60] = false;
+			datenbank.statistiken[3] += 1;
 		}
+	}
+	
+	//uebergibt die gesammelten statistischen Daten an die Datenbank
+	void statistikenSpeichern()
+	{
+		if(wellennummer - 1 > datenbank.statistiken[karte.kartenId - 1])
+			datenbank.statistiken[karte.kartenId - 1] = wellennummer - 1;
+		datenbank.statistikenSpeichern();
+	}
+	
+	//uebergibt den Spielstand an die Datenbank
+	void spielstandSpeichern()
+	{
+		int [] allgemein = new int [] {geldGesamt, leben, wellennummer, gegnerGetoetet};
+		datenbank.spielstandSpeichern(karte.kartenId, allgemein, angriffstuerme, unterstuetzungstuerme);
 	}
 }
