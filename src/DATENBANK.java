@@ -63,37 +63,27 @@ class DATENBANK
 	void spielstandLaden()
 	{
 		allgemein = new int [2][5];
+		FileReader fileReader;
+		BufferedReader bufferedReader;
 		try
         {
-            FileReader fileReader = new FileReader("src/daten/karte1/allgemein.txt");
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            for (int i = 0; i < allgemein[0].length; ++i)
-            {
-            	try
-            	{
-            		allgemein[0][i] = Integer.parseInt(bufferedReader.readLine());
-            	}
-            	catch(NumberFormatException ex) //Führt dazu, dass das Spiel einmal neu gestartet werden muss, dass es aber danach funktioniert
-            	{
-            		allgemein[0][i] = 0;
-            	}
-            }
-            bufferedReader.close();
-            
-            fileReader = new FileReader("src/daten/karte2/allgemein.txt");
-            bufferedReader = new BufferedReader(fileReader);
-            for (int i = 0; i < allgemein[0].length; ++i)
-            {
-            	try
-            	{
-            		allgemein[1][i] = Integer.parseInt(bufferedReader.readLine());
-            	}
-            	catch(NumberFormatException ex)
-            	{
-            		allgemein[1][i] = 0;
-            	}
-            }
-            bufferedReader.close();
+			for(int i = 0; i < 2; ++i)
+			{
+	            fileReader = new FileReader("src/daten/karte" + (i + 1) + "/allgemein.txt");
+	            bufferedReader = new BufferedReader(fileReader);
+	            for (int j = 0; j < allgemein[0].length; ++j)
+	            {
+	            	try
+	            	{
+	            		allgemein[i][j] = Integer.parseInt(bufferedReader.readLine());
+	            	}
+	            	catch(NumberFormatException ex) //Führt dazu, dass das Spiel einmal neu gestartet werden muss, dass es aber danach funktioniert
+	            	{
+	            		allgemein[i][j] = 0;
+	            	}
+	            }
+	            bufferedReader.close();
+			}
             
             fileReader = new FileReader("src/daten/karte1/tuerme.txt");
             bufferedReader = new BufferedReader(fileReader);
