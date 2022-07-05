@@ -77,7 +77,7 @@ class DATENBANK
 	            	{
 	            		allgemein[i][j] = Integer.parseInt(bufferedReader.readLine());
 	            	}
-	            	catch(NumberFormatException ex) //Führt dazu, dass das Spiel einmal neu gestartet werden muss, dass es aber danach funktioniert
+	            	catch(NumberFormatException ex) //Fuehrt dazu, dass das Spiel einmal neu gestartet werden muss, dass es aber danach funktioniert
 	            	{
 	            		allgemein[i][j] = 0;
 	            	}
